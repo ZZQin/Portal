@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-View Aluminium - PORTAL Garage Doors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+/* PORTAL Brand Colors */
+:root {
+    --portal-black: #1A1A1A;
+    --concrete-gray: #B0B0B0;
+    --cloud-white: #F5F5F5;
+    --navy-depth: #1E3A5F;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--cloud-white);
+    color: var(--portal-black);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(to bottom, rgba(245,245,245,0.98), rgba(245,245,245,0.9));
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(26,26,26,0.05);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--portal-black);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-transform: uppercase;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 32px;
+    position: relative;
+}
+
+.logo-icon::before,
+.logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 28px;
+    background: var(--portal-black);
+    bottom: 0;
+}
+
+.logo-icon::before { left: 2px; }
+.logo-icon::after { right: 2px; }
+
+.logo-arch {
+    position: absolute;
+    top: 0;
+    left: 2px;
+    right: 2px;
+    height: 10px;
+    border-top: 3px solid var(--portal-black);
+    border-radius: 50% 50% 0 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--portal-black);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.nav-links a:hover, .nav-links a.active { opacity: 1; }
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: 6rem 3rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--concrete-gray);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.breadcrumb a {
+    color: var(--concrete-gray);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumb a:hover { color: var(--portal-black); }
+.breadcrumb .separator { opacity: 0.5; }
+.breadcrumb .current { color: var(--portal-black); font-weight: 600; }
+
+/* Product Hero */
+.product-hero {
+    padding: 2rem 3rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+@media (max-width: 1000px) {
+    .product-hero { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* Image Gallery */
+.gallery { position: sticky; top: 100px; max-width: 100%; }
+
+.main-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    max-width: 600px;
+}
+
+.thumbnail {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+    opacity: 0.7;
+}
+
+.thumbnail:hover, .thumbnail.active {
+    border-color: var(--navy-depth);
+    opacity: 1;
+}
+
+/* Product Info */
+.product-info { padding-top: 1rem; }
+
+.product-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--navy-depth);
+    margin-bottom: 0.75rem;
+}
+
+.product-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.product-description {
+    font-size: 1.0625rem;
+    color: var(--portal-black);
+    opacity: 0.7;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+/* Configurator */
+.config-section { margin-bottom: 2rem; }
+
+.config-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--portal-black);
+    margin-bottom: 1rem;
+}
+
+.config-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.config-option {
+    padding: 0.875rem 1.5rem;
+    background: white;
+    border: 1px solid rgba(26,26,26,0.1);
+    border-radius: 4px;
+    color: var(--portal-black);
+    opacity: 0.7;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+
+.config-option:hover {
+    border-color: var(--navy-depth);
+    opacity: 1;
+}
+
+.config-option.active {
+    background: var(--portal-black);
+    border-color: var(--portal-black);
+    color: white;
+    opacity: 1;
+}
+
+/* Color Swatches */
+.color-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.color-swatch {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.color-swatch:hover, .color-swatch.active {
+    border-color: var(--navy-depth);
+    transform: scale(1.1);
+}
+
+.color-swatch.white { background: #f5f5f5; border: 1px solid #ddd; }
+.color-swatch.black { background: #1a1a1a; }
+.color-swatch.golden-oak { background: #8B6914; }
+.color-swatch.old-forge { background: #2C2C2C; }
+
+/* CTA Buttons */
+.cta-section {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(26,26,26,0.08);
+}
+
+.btn {
+    padding: 1.125rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background: var(--portal-black);
+    border: 2px solid var(--portal-black);
+    color: white;
+    flex: 1;
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--portal-black);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--portal-black);
+    color: var(--portal-black);
+}
+
+.btn-secondary:hover {
+    background: var(--portal-black);
+    color: white;
+}
+
+/* Tabs */
+.tabs-section {
+    padding: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.tabs-header {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid rgba(26,26,26,0.08);
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    padding: 1rem 2rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--concrete-gray);
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    margin-bottom: -1px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.tab-btn:hover { color: var(--portal-black); }
+
+.tab-btn.active {
+    color: var(--navy-depth);
+    border-bottom-color: var(--navy-depth);
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.tab-content h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+}
+
+.tab-content p {
+    color: var(--portal-black);
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .features-grid { grid-template-columns: 1fr; }
+}
+
+.feature-card {
+    background: white;
+    border: 1px solid rgba(26,26,26,0.06);
+    padding: 1.5rem;
+}
+
+.feature-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--portal-black);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.feature-card p {
+    font-size: 0.9375rem;
+    color: var(--portal-black);
+    opacity: 0.65;
+    margin: 0;
+}
+
+/* Specs Table */
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.specs-table tr { border-bottom: 1px solid rgba(26,26,26,0.08); }
+
+.specs-table td {
+    padding: 1rem 0;
+    font-size: 0.9375rem;
+}
+
+.specs-table td:first-child {
+    color: var(--portal-black);
+    opacity: 0.6;
+    width: 40%;
+}
+
+.specs-table td:last-child {
+    color: var(--portal-black);
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    padding: 4rem 3rem;
+    border-top: 1px solid rgba(26,26,26,0.08);
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.footer-tagline {
+    font-size: 0.9375rem;
+    color: var(--concrete-gray);
+    margin-bottom: 2rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    list-style: none;
+}
+
+.footer-links a {
+    color: var(--portal-black);
+    opacity: 0.6;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: opacity 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-links a:hover { opacity: 1; }
+
+.footer-copy {
+    color: var(--concrete-gray);
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .breadcrumb, .product-hero, .tabs-section {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .product-title { font-size: 1.75rem; }
+    .gallery { position: relative; top: 0; }
+    .cta-section { flex-direction: column; }
+    .tabs-header {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .tab-btn { white-space: nowrap; padding: 1rem 1.25rem; }
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">PORTAL<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html" class="active">Products</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="separator">/</span>
+            <a href="products.html">Categories</a>
+            <span class="separator">/</span>
+            <a href="products.html">Residential</a>
+            <span class="separator">/</span>
+            <span class="current">Full-View Aluminium</span>
+        </div>
+        
+        <section class="product-hero">
+            <div class="gallery">
+                <img src="images/glass_garage.jpg" alt="Full-View Aluminium Garage Door" class="main-image" id="mainImage">
+                <div class="thumbnail-grid">
+                    <img src="images/glass_garage.jpg" alt="View 1" class="thumbnail active" onclick="changeImage(this, 'images/glass_garage.jpg')">
+                    <img src="images/door_craftsman.jpg" alt="View 2" class="thumbnail" onclick="changeImage(this, 'images/door_craftsman.jpg')">
+                    <img src="images/door_windows.jpg" alt="View 3" class="thumbnail" onclick="changeImage(this, 'images/door_windows.jpg')">
+                    <img src="images/portal_legacy.jpg" alt="View 4" class="thumbnail" onclick="changeImage(this, 'images/portal_legacy.jpg')">
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <div class="product-category">Full-View Collection</div>
+                <h1 class="product-title">Full-View Aluminium</h1>
+                <p class="product-description">
+                    The Full-View Aluminium Collection features contemporary aluminum and glass design maximizing natural light. Sleek frame profiles create striking visual impact for modern architecture. This specialty product uses a different configuration structure.
+                </p>
+                
+                <div class="cta-section">
+                    <button class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 6h15l-1.5 9h-12z"/>
+                            <circle cx="9" cy="20" r="1"/>
+                            <circle cx="18" cy="20" r="1"/>
+                            <path d="M6 6L5 3H2"/>
+                        </svg>
+                        Request Consultation
+                    </button>
+                    <button class="btn btn-secondary">Get Quote</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="tabs-section">
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+                <button class="tab-btn" onclick="showTab('structure')">Panel Structure</button>
+                <button class="tab-btn" onclick="showTab('style')">Choose Your Style</button>
+            </div>
+            
+            <div id="overview" class="tab-content active">
+                <h3>Contemporary Design Meets Maximum Light</h3>
+                <p>The Full-View Aluminium Collection represents the pinnacle of modern garage door design. Constructed with premium-grade aluminum frames and expansive glass panels, these doors transform your garage into a showcase of architectural beauty while flooding the interior with natural light. Each door is engineered to provide both stunning aesthetics and reliable performance.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>Contemporary Aluminum Frame</h4>
+                        <p>Premium-grade aluminum construction with slim profiles for maximum glass exposure</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Maximum Natural Light</h4>
+                        <p>Full-view glass panels flood your garage with daylight while maintaining privacy options</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Modern Architectural Appeal</h4>
+                        <p>Clean lines and minimalist design complement contemporary homes and commercial spaces</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Custom Configuration</h4>
+                        <p>Each door is custom-built to specifications without standard pre-configured options</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="structure" class="tab-content">
+                <h3>Aluminum Frame & Glass Panel Construction</h3>
+                <p>The Full-View Aluminium door features a unique construction methodology designed specifically for aluminum and glass applications. Our engineering team works with you to determine the optimal frame profile, glass type, and panel configuration for your specific requirements.</p>
+                
+                <h4 style="margin-top: 2rem; margin-bottom: 1rem; font-weight: 600;">Frame Profile Options</h4>
+                <ul style="color: var(--muted); margin-left: 1.5rem; line-height: 2;">
+                    <li><strong>Narrow Frame</strong> - Minimal aluminum visibility for maximum glass exposure</li>
+                    <li><strong>Standard Frame</strong> - Balanced profile offering structural integrity with clean aesthetics</li>
+                    <li><strong>Wide Frame</strong> - Bold architectural statement with substantial aluminum presence</li>
+                </ul>
+                
+                <h4 style="margin-top: 2rem; margin-bottom: 1rem; font-weight: 600;">Glass Configuration</h4>
+                <p style="color: var(--muted);">Glass panels can be configured in various layouts from full single-panel designs to segmented multi-panel arrangements. Options include clear, frosted, tinted, and insulated glass types to meet your specific needs for privacy, energy efficiency, and aesthetics.</p>
+                
+                <h4 style="margin-top: 2rem; margin-bottom: 1rem; font-weight: 600;">Finish Options</h4>
+                <p style="color: var(--muted);">Aluminum frames are available in a range of anodized and powder-coated finishes including natural aluminum, black, bronze, white, and custom color matching to complement your home's exterior.</p>
+            </div>
+            
+            <div id="style" class="tab-content">
+                <h3>Custom Consultation Required</h3>
+                <p>The Full-View Aluminium Collection is a specialty product that requires personalized consultation to ensure the perfect configuration for your project. Unlike our standard product lines, these doors are custom-engineered to your exact specifications.</p>
+                
+                <h4 style="margin-top: 2rem; margin-bottom: 1rem; font-weight: 600;">Our Consultation Process</h4>
+                <ul style="color: var(--muted); margin-left: 1.5rem; line-height: 2;">
+                    <li><strong>Initial Assessment</strong> - We evaluate your space, architectural style, and functional requirements</li>
+                    <li><strong>Design Consultation</strong> - Our team presents frame profiles, glass options, and finish samples</li>
+                    <li><strong>Custom Engineering</strong> - Your door is designed to precise measurements and specifications</li>
+                    <li><strong>Professional Installation</strong> - Expert installation ensures optimal performance and longevity</li>
+                </ul>
+                
+                <p style="margin-top: 2rem; color: var(--muted);">Contact our team today to schedule your personalized consultation and discover how the Full-View Aluminium Collection can transform your property.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-logo">PORTAL<span>.</span></div>
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <p class="footer-copy">© 2026 Kosper Limited. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Image gallery
+        function changeImage(thumbnail, src) {
+            document.getElementById('mainImage').src = src;
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            thumbnail.classList.add('active');
+        }
+        
+        // Color selection
+        function selectColor(swatch) {
+            document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+            swatch.classList.add('active');
+        }
+        
+        // Config option selection
+        document.querySelectorAll('.config-option').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('.config-option').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Tabs
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

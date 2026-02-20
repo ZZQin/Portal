@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal One — Start Your Journey | PORTAL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* PORTAL Brand Colors */
+        :root {
+            --portal-black: #1A1A1A;
+            --concrete-gray: #B0B0B0;
+            --cloud-white: #F5F5F5;
+            --sky-blue: #4A90E2;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--cloud-white);
+            color: var(--portal-black);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(to bottom, rgba(245,245,245,0.98), rgba(245,245,245,0.9));
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(26,26,26,0.05);
+        }
+        
+        /* PORTAL Logo with doorway icon */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: var(--portal-black);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        .logo-icon {
+            width: 28px;
+            height: 32px;
+            position: relative;
+        }
+        
+        .logo-icon::before,
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 28px;
+            background: var(--portal-black);
+            bottom: 0;
+        }
+        
+        .logo-icon::before { left: 2px; }
+        .logo-icon::after { right: 2px; }
+        
+        .logo-arch {
+            position: absolute;
+            top: 0;
+            left: 2px;
+            right: 2px;
+            height: 10px;
+            border-top: 3px solid var(--portal-black);
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--portal-black);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-links a:hover {
+            opacity: 1;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 3rem 4rem;
+            background: var(--cloud-white);
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            z-index: 2;
+        }
+        
+        /* Tier Indicator */
+        .tier-indicator {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding: 0.5rem;
+        }
+        
+        .tier-indicator-line {
+            width: 36px;
+            height: 3px;
+            background: rgba(26,26,26,0.1);
+        }
+        
+        .tier-indicator-line.active {
+            background: var(--sky-blue);
+        }
+        
+        .tier-label {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--sky-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+        
+        .hero-tagline {
+            font-size: 1.25rem;
+            color: var(--portal-black);
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        .hero-price {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--portal-black);
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1.125rem 2.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        
+        .btn-primary {
+            background: var(--sky-blue);
+            border: 2px solid var(--sky-blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--sky-blue);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--portal-black);
+            color: var(--portal-black);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--portal-black);
+            color: var(--cloud-white);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 6rem 3rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--concrete-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .section h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+        
+        .section p {
+            color: var(--portal-black);
+            opacity: 0.7;
+            font-size: 1.125rem;
+        }
+        
+        /* Overview Grid */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 900px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        .overview-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .overview-item h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .overview-item p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.7;
+        }
+        
+        .overview-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1.5rem;
+            background: var(--sky-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .overview-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 6rem 3rem;
+            background: white;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 900px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .product-card {
+            background: var(--cloud-white);
+            border: 1px solid rgba(26,26,26,0.08);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-name {
+            font-size: 1.125rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .product-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--sky-blue);
+            margin-bottom: 0.75rem;
+        }
+        
+        .product-description {
+            font-size: 0.9375rem;
+            color: var(--portal-black);
+            opacity: 0.7;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .product-link {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--portal-black);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .product-link:hover {
+            color: var(--sky-blue);
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 6rem 3rem;
+            background: var(--cloud-white);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border: 1px solid rgba(26,26,26,0.08);
+        }
+        
+        .feature-check {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            background: var(--sky-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feature-check svg {
+            width: 14px;
+            height: 14px;
+            stroke: white;
+        }
+        
+        .feature-text {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 3rem;
+            background: var(--portal-black);
+            text-align: center;
+        }
+        
+        .cta-section .section-tag {
+            color: var(--concrete-gray);
+        }
+        
+        .cta-section h2 {
+            color: var(--cloud-white);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+        
+        .cta-quote {
+            font-size: 1.25rem;
+            color: var(--cloud-white);
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        .btn-white {
+            background: var(--cloud-white);
+            border: 2px solid var(--cloud-white);
+            color: var(--portal-black);
+        }
+        
+        .btn-white:hover {
+            background: transparent;
+            color: var(--cloud-white);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 3rem;
+            border-top: 1px solid rgba(26,26,26,0.08);
+            text-align: center;
+            background: var(--cloud-white);
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        
+        .footer-logo-icon {
+            width: 28px;
+            height: 32px;
+            position: relative;
+        }
+        
+        .footer-logo-icon::before,
+        .footer-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 28px;
+            background: var(--portal-black);
+            bottom: 0;
+        }
+        
+        .footer-logo-icon::before { left: 2px; }
+        .footer-logo-icon::after { right: 2px; }
+        
+        .footer-logo-arch {
+            position: absolute;
+            top: 0;
+            left: 2px;
+            right: 2px;
+            height: 10px;
+            border-top: 3px solid var(--portal-black);
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .footer-tagline {
+            font-size: 0.9375rem;
+            color: var(--concrete-gray);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--portal-black);
+            opacity: 0.6;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .footer-copy {
+            color: var(--concrete-gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+            
+            .section,
+            .products-section,
+            .features-section,
+            .cta-section {
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <div class="logo-arch"></div>
+            </div>
+            Portal
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="index.html#story">Stories</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Tier Indicator: 1 blue line for ONE tier -->
+            <div class="tier-indicator">
+                <div class="tier-indicator-line active"></div>
+                <div class="tier-indicator-line"></div>
+                <div class="tier-indicator-line"></div>
+            </div>
+            <div class="tier-label">Portal One</div>
+            <h1>Start somewhere.</h1>
+            <p class="hero-tagline">Every revolution begins with a single step.</p>
+            
+            <div class="hero-cta">
+                <a href="#consultation" class="btn btn-primary">Schedule Free Consultation</a>
+                <a href="#products" class="btn btn-secondary">View Products</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="overview">
+        <div class="section-header">
+            <div class="section-tag">Why Portal One</div>
+            <h2>The Perfect Beginning</h2>
+            <p>Engineered for durability, designed for clarity, built to open into whatever comes next.</p>
+        </div>
+        
+        <div class="overview-grid">
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                </div>
+                <h3>First Steps</h3>
+                <p>Designed for new homeowners taking their first steps into creating their ideal space. Simple, straightforward, and ready when you are.</p>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3>Honest Quality</h3>
+                <p>Steel construction that stands the test of time. No compromise on materials—just purposeful engineering you can trust.</p>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <h3>Accessible Quality</h3>
+                <p>Quality within reach. Premium garage doors that don't break the bank, because starting your journey shouldn't cost a fortune.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="products-section" id="products">
+        <div class="section-header">
+            <div class="section-tag">Portal One Collection</div>
+            <h2>Choose Your Door</h2>
+            <p>Three distinct styles, one unwavering standard of quality.</p>
+        </div>
+        
+        <div class="products-grid">
+            <a href="product-classic.html" class="product-card">
+                <img src="images/portal_one.jpg" alt="Classic Garage Door" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Classic</h3>
+                    
+                    <p class="product-description">Most affordable and versatile. The perfect entry point into the PORTAL family.</p>
+                    <span class="product-link">View Details →</span>
+                </div>
+            </a>
+            
+            <a href="product-modern-line.html" class="product-card">
+                <img src="images/door_modern_black.jpg" alt="Modern Line Garage Door" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Modern Line</h3>
+                    
+                    <p class="product-description">Clean lines and contemporary aesthetics for the modern homeowner.</p>
+                    <span class="product-link">View Details →</span>
+                </div>
+            </a>
+            
+            <a href="product-reflections.html" class="product-card">
+                <img src="images/hero_garage.jpg" alt="Reflections Garage Door" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Reflections</h3>
+                    
+                    <p class="product-description">Simple, flush design that speaks volumes through quiet sophistication.</p>
+                    <span class="product-link">View Details →</span>
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <section class="features-section" id="features">
+        <div class="section-header">
+            <div class="section-tag">What's Included</div>
+            <h2>Every Portal One Features</h2>
+            <p>Standard features that exceed expectations.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <span class="feature-text">Steel construction with powder-coat finish</span>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <span class="feature-text">3-5 standard colors to choose from</span>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <span class="feature-text">Reliable belt-drive motor system</span>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <span class="feature-text">10-year materials warranty</span>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <span class="feature-text">Wi-Fi integration available</span>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <span class="feature-text">Professional installation included</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section" id="consultation">
+        <div class="section-tag">Ready to Begin?</div>
+        <h2>Your Journey Starts Here</h2>
+        <p class="cta-quote">"The garage isn't just storage. It's a portal to possibility. Every great story has a beginning—make yours count."</p>
+        <a href="contact.html" class="btn btn-white">Schedule Free Consultation</a>
+    </section>
+    
+    <footer id="contact">
+        <div class="footer-logo">
+            <div class="footer-logo-icon">
+                <div class="footer-logo-arch"></div>
+            </div>
+            Portal
+        </div>
+        <div class="footer-tagline">Where Potential Becomes Real</div>
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="index.html#story">Stories</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <p class="footer-copy">© 2026 Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>

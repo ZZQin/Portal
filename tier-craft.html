@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Craft — Make It Yours | PORTAL Garage Doors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* PORTAL Brand Colors */
+        :root {
+            --portal-black: #1A1A1A;
+            --concrete-gray: #B0B0B0;
+            --cloud-white: #F5F5F5;
+            --forge-gold: #D4A574;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--cloud-white);
+            color: var(--portal-black);
+            line-height: 1.6;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(to bottom, rgba(245,245,245,0.98), rgba(245,245,245,0.9));
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(26,26,26,0.05);
+        }
+        
+        /* PORTAL Logo with doorway icon */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: var(--portal-black);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        .logo-icon {
+            width: 28px;
+            height: 32px;
+            position: relative;
+        }
+        
+        .logo-icon::before,
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 28px;
+            background: var(--portal-black);
+            bottom: 0;
+        }
+        
+        .logo-icon::before { left: 2px; }
+        .logo-icon::after { right: 2px; }
+        
+        .logo-arch {
+            position: absolute;
+            top: 0;
+            left: 2px;
+            right: 2px;
+            height: 10px;
+            border-top: 3px solid var(--portal-black);
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--portal-black);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-links a:hover {
+            opacity: 1;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 10rem 3rem 6rem;
+            background: var(--cloud-white);
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            z-index: 2;
+        }
+        
+        /* Tier Indicator - 2 lines for CRAFT */
+        .tier-indicator {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tier-line {
+            width: 40px;
+            height: 3px;
+            background: rgba(26,26,26,0.1);
+        }
+        
+        .tier-indicator .tier-line:nth-child(-n+2) {
+            background: var(--forge-gold);
+        }
+        
+        .hero-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--forge-gold);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+        
+        .hero-tagline {
+            font-size: 1.25rem;
+            color: var(--portal-black);
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        .hero-price {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--portal-black);
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        
+        .btn {
+            padding: 1.125rem 2.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: 2px solid var(--portal-black);
+        }
+        
+        .btn-primary {
+            background: var(--portal-black);
+            color: var(--cloud-white);
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--portal-black);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 6rem 3rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--forge-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .section h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+        
+        .section-subtitle {
+            color: var(--portal-black);
+            opacity: 0.7;
+            font-size: 1.125rem;
+        }
+        
+        /* Overview Section - Three Column */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 900px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        .overview-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .overview-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 50%;
+        }
+        
+        .overview-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--forge-gold);
+        }
+        
+        .overview-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .overview-card p {
+            color: var(--portal-black);
+            opacity: 0.7;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 6rem 3rem;
+            background: linear-gradient(to bottom, var(--cloud-white), rgba(212, 165, 116, 0.05));
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .product-card {
+            background: white;
+            border: 1px solid rgba(26,26,26,0.08);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-tier {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--forge-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-name {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        
+        .product-price {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--portal-black);
+            opacity: 0.8;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 6rem 3rem;
+            background: var(--cloud-white);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 900px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+        }
+        
+        .feature-check {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            color: var(--forge-gold);
+        }
+        
+        .feature-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--portal-black);
+            line-height: 1.5;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 3rem;
+            background: var(--portal-black);
+            text-align: center;
+        }
+        
+        .cta-quote {
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 3rem;
+            font-style: italic;
+            color: var(--cloud-white);
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-section .btn-primary {
+            background: var(--forge-gold);
+            border-color: var(--forge-gold);
+            color: var(--portal-black);
+        }
+        
+        .cta-section .btn-primary:hover {
+            background: transparent;
+            color: var(--forge-gold);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 3rem;
+            border-top: 1px solid rgba(26,26,26,0.08);
+            text-align: center;
+            background: var(--cloud-white);
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        
+        .footer-logo .logo-icon {
+            width: 24px;
+            height: 28px;
+        }
+        
+        .footer-logo .logo-icon::before,
+        .footer-logo .logo-icon::after {
+            height: 24px;
+        }
+        
+        .footer-tagline {
+            font-size: 0.9375rem;
+            color: var(--concrete-gray);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--portal-black);
+            opacity: 0.6;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .footer-copy {
+            color: var(--concrete-gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+            
+            .section,
+            .products-section,
+            .features-section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .cta-section {
+                padding: 5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <div class="logo-arch"></div>
+            </div>
+            Portal
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="index.html#stories">Stories</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Tier Indicator: 2 gold lines for CRAFT tier -->
+            <div class="tier-indicator">
+                <div class="tier-line"></div>
+                <div class="tier-line"></div>
+                <div class="tier-line"></div>
+            </div>
+            <div class="hero-label">Portal Craft</div>
+            <h1>Make it yours.</h1>
+            <p class="hero-tagline">Your garage isn't storage—it's your studio, workshop, sanctuary.</p>
+            
+            <a href="contact.html" class="btn btn-primary">Schedule Free Consultation</a>
+        </div>
+    </section>
+    
+    <!-- Overview Section -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-tag">Why Craft</div>
+            <h2>Built for Makers</h2>
+            <p class="section-subtitle">Three pillars that define the Craft tier experience.</p>
+        </div>
+        
+        <div class="overview-grid">
+            <div class="overview-card">
+                <div class="overview-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <h3>Customization</h3>
+                <p>12+ premium finishes to match your vision. warm wood grains to modern metallics, create a door that reflects your unique style.</p>
+            </div>
+            
+            <div class="overview-card">
+                <div class="overview-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                    </svg>
+                </div>
+                <h3>Performance</h3>
+                <p>Whisper-quiet direct-drive motor and R-16 insulation. Work in comfort without the noise, keep your space comfortable year-round.</p>
+            </div>
+            
+            <div class="overview-card">
+                <div class="overview-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    </svg>
+                </div>
+                <h3>Character</h3>
+                <p>Designed for makers and hobbyists who see their garage as more than storage—a space where projects come to life.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="section-header">
+            <div class="section-tag">Craft Collection</div>
+            <h2>Choose Your Door</h2>
+            <p class="section-subtitle">Four distinctive styles, each customizable to your vision.</p>
+        </div>
+        
+        <div class="products-grid">
+            <a href="product-craftsman-heritage.html" class="product-card">
+                <img src="images/portal_craft.jpg" alt="Craftsman Heritage Garage Door" class="product-image">
+                <div class="product-info">
+                    <div class="product-tier">Craft Tier</div>
+                    <h3 class="product-name">Craftsman Heritage</h3>
+                    
+                </div>
+            </a>
+            
+            <a href="product-savannah-charm.html" class="product-card">
+                <img src="images/door_craftsman.jpg" alt="Savannah Charm Garage Door" class="product-image">
+                <div class="product-info">
+                    <div class="product-tier">Craft Tier</div>
+                    <h3 class="product-name">Savannah Charm</h3>
+                    
+                </div>
+            </a>
+            
+            <a href="product-estate-carriage.html" class="product-card">
+                <img src="images/luxury_garage.jpg" alt="Estate Carriage Garage Door" class="product-image">
+                <div class="product-info">
+                    <div class="product-tier">Craft Tier</div>
+                    <h3 class="product-name">Estate Carriage</h3>
+                    
+                </div>
+            </a>
+            
+            <a href="product-timberline-classic.html" class="product-card">
+                <img src="images/woodshop_garage.jpg" alt="Timberline Classic Garage Door" class="product-image">
+                <div class="product-info">
+                    <div class="product-tier">Craft Tier</div>
+                    <h3 class="product-name">Timberline Classic</h3>
+                    
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="section-header">
+            <div class="section-tag">Features</div>
+            <h2>What's Included</h2>
+            <p class="section-subtitle">Every Craft tier door comes standard with these premium features.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <svg class="feature-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="feature-text">Steel or composite wood-look construction</span>
+            </div>
+            
+            <div class="feature-item">
+                <svg class="feature-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="feature-text">12+ custom finish options</span>
+            </div>
+            
+            <div class="feature-item">
+                <svg class="feature-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="feature-text">Insulated panels (R-16 rating)</span>
+            </div>
+            
+            <div class="feature-item">
+                <svg class="feature-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="feature-text">Ultra-quiet direct-drive motor</span>
+            </div>
+            
+            <div class="feature-item">
+                <svg class="feature-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="feature-text">Integrated LED lighting</span>
+            </div>
+            
+            <div class="feature-item">
+                <svg class="feature-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="feature-text">15-year materials warranty</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <p class="cta-quote">"Your garage is where ideas become tangible. Give it the door it deserves."</p>
+        <a href="#" class="btn btn-primary">Schedule Free Consultation</a>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">
+            <div class="logo-icon">
+                <div class="logo-arch"></div>
+            </div>
+            Portal
+        </div>
+        <div class="footer-tagline">Where Potential Becomes Real</div>
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="index.html#stories">Stories</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <p class="footer-copy">© 2026 Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>
