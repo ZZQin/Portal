@@ -3,407 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Legacy — Built to Last. Built to Matter.</title>
+    <title>Portal Legacy — Built to Last | PORTAL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-new.css">
     <style>
-        /* PORTAL Brand Colors */
-        :root {
-            --portal-black: #1A1A1A;
-            --concrete-gray: #B0B0B0;
-            --cloud-white: #F5F5F5;
-            --navy-depth: #1E3A5F;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--cloud-white);
-            color: var(--portal-black);
-            line-height: 1.6;
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 3rem;
-            background: linear-gradient(to bottom, rgba(245,245,245,0.98), rgba(245,245,245,0.9));
-            backdrop-filter: blur(10px);
+        .hero-tier {
+            min-height: 85vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(26,26,26,0.05);
-        }
-        
-        /* PORTAL Logo with doorway icon */
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            color: var(--portal-black);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-transform: uppercase;
-        }
-        
-        .logo-icon {
-            width: 28px;
-            height: 32px;
-            position: relative;
-        }
-        
-        .logo-icon::before,
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            width: 3px;
-            height: 28px;
-            background: var(--portal-black);
-            bottom: 0;
-        }
-        
-        .logo-icon::before { left: 2px; }
-        .logo-icon::after { right: 2px; }
-        
-        .logo-arch {
-            position: absolute;
-            top: 0;
-            left: 2px;
-            right: 2px;
-            height: 10px;
-            border-top: 3px solid var(--portal-black);
-            border-radius: 50% 50% 0 0;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: var(--portal-black);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .nav-links a:hover {
-            opacity: 1;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
-            padding: 8rem 3rem 4rem;
-            background: var(--cloud-white);
-        }
-        
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            z-index: 2;
-        }
-        
-        /* Tier Indicator Lines - 3 lines for Legacy */
-        .tier-indicator {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .tier-indicator-line {
-            width: 40px;
-            height: 3px;
-            background: var(--navy-depth);
-        }
-        
-        .tier-label {
-            font-size: 0.875rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--navy-depth);
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-        }
-        
-        .hero-tagline {
-            font-size: 1.25rem;
-            color: var(--portal-black);
-            opacity: 0.7;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            line-height: 1.7;
-            font-weight: 400;
-        }
-        
-        .hero-price {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: var(--portal-black);
-            margin-bottom: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-        
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 1.125rem 2.5rem;
-            font-size: 0.875rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: inherit;
-            text-decoration: none;
-            display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-        
-        .btn-primary {
-            background: var(--navy-depth);
-            border: 2px solid var(--navy-depth);
-            color: var(--cloud-white);
-        }
-        
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--navy-depth);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--portal-black);
-            color: var(--portal-black);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--portal-black);
-            color: var(--cloud-white);
-        }
-        
-        /* Section Styles */
-        .section {
-            padding: 6rem 3rem;
-        }
-        
-        .section-header {
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
+            padding: calc(var(--space-4xl) + 60px) var(--space-2xl) var(--space-3xl);
+            background: linear-gradient(180deg, #F0F4F8 0%, var(--color-white) 100%);
         }
         
-        .section-tag {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--concrete-gray);
-            margin-bottom: 1rem;
+        .hero-tier-content {
+            max-width: 800px;
         }
         
-        .section h2 {
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: -0.01em;
+        .hero-tier h1 {
+            margin-bottom: var(--space-md);
         }
         
-        .section p {
-            color: var(--portal-black);
-            opacity: 0.7;
-            font-size: 1.125rem;
-        }
-        
-        /* Overview Section - Three Column */
-        .overview-section {
-            background: white;
-            border-top: 1px solid rgba(26,26,26,0.06);
-            border-bottom: 1px solid rgba(26,26,26,0.06);
-        }
-        
-        .overview-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        @media (max-width: 900px) {
-            .overview-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-        
-        .overview-item {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .overview-item h3 {
-            font-size: 1.125rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--navy-depth);
-        }
-        
-        .overview-item p {
-            font-size: 1rem;
-            line-height: 1.7;
-            opacity: 0.7;
-        }
-        
-        /* Products Section */
-        .products-section {
-            background: var(--cloud-white);
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .product-card {
-            background: white;
-            border: 1px solid rgba(26,26,26,0.06);
-            overflow: hidden;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-        }
-        
-        .product-image {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .product-card:hover .product-image {
-            transform: scale(1.05);
-        }
-        
-        .product-content {
-            padding: 2rem;
-        }
-        
-        .product-id {
-            font-size: 0.6875rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--navy-depth);
-            margin-bottom: 0.5rem;
-        }
-        
-        .product-name {
-            font-size: 1.375rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.01em;
-        }
-        
-        .product-price {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--portal-black);
-            margin-bottom: 1rem;
-        }
-        
-        .product-link {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--portal-black);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: opacity 0.3s;
-        }
-        
-        .product-link:hover {
-            opacity: 0.7;
-        }
-        
-        /* Features Section */
-        .features-section {
-            background: white;
-            border-top: 1px solid rgba(26,26,26,0.06);
+        .hero-tier-desc {
+            max-width: 550px;
+            margin: 0 auto var(--space-xl);
+            color: var(--color-gray-600);
         }
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1100px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            max-width: 800px;
             margin: 0 auto;
-        }
-        
-        @media (max-width: 900px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
         
         @media (max-width: 640px) {
@@ -412,140 +48,55 @@
             }
         }
         
-        .feature-item {
-            padding: 1.5rem;
-            border-left: 3px solid var(--navy-depth);
-            background: var(--cloud-white);
+        .tier-products {
+            background: #F0F4F8;
         }
         
-        .feature-item h4 {
-            font-size: 0.9375rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .feature-item p {
-            font-size: 0.9375rem;
-            opacity: 0.7;
-            margin: 0;
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            background: var(--navy-depth);
-            color: var(--cloud-white);
+        .quote-section {
             text-align: center;
-            padding: 6rem 3rem;
-        }
-        
-        .cta-quote {
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
-            font-weight: 300;
-            font-style: italic;
-            line-height: 1.6;
             max-width: 800px;
-            margin: 0 auto 3rem;
-            opacity: 0.95;
+            margin: 0 auto;
         }
         
-        .cta-section .btn-primary {
-            background: var(--cloud-white);
-            border-color: var(--cloud-white);
-            color: var(--navy-depth);
-        }
-        
-        .cta-section .btn-primary:hover {
-            background: transparent;
-            color: var(--cloud-white);
-        }
-        
-        /* Footer */
-        footer {
-            padding: 4rem 3rem;
-            border-top: 1px solid rgba(26,26,26,0.08);
-            text-align: center;
-            background: var(--cloud-white);
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        
-        .footer-tagline {
-            font-size: 0.9375rem;
-            color: var(--concrete-gray);
-            margin-bottom: 2rem;
+        .quote-text {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
             font-weight: 500;
+            line-height: 1.5;
+            color: var(--color-gray-700);
+            font-style: italic;
+            margin-bottom: var(--space-lg);
         }
         
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            list-style: none;
-            flex-wrap: wrap;
+        .quote-author {
+            font-size: 0.9375rem;
+            color: var(--color-gray-500);
         }
         
-        .footer-links a {
-            color: var(--portal-black);
-            opacity: 0.6;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            transition: opacity 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .landmark-item {
+            text-align: center;
+            padding: var(--space-xl);
         }
         
-        .footer-links a:hover {
-            opacity: 1;
+        .landmark-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-legacy);
+            line-height: 1;
+            margin-bottom: var(--space-sm);
         }
         
-        .footer-copy {
-            color: var(--concrete-gray);
-            font-size: 0.875rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-            
-            .section {
-                padding: 4rem 1.5rem;
-            }
-            
-            .overview-item {
-                padding: 1.5rem 1rem;
-            }
-            
-            .product-content {
-                padding: 1.5rem;
-            }
+        .landmark-label {
+            font-size: 0.9375rem;
+            color: var(--color-gray-600);
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">
-            <div class="logo-icon">
-                <div class="logo-arch"></div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">
+                <div class="nav-logo-arch"></div>
             </div>
             Portal
         </a>
@@ -556,129 +107,253 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <!-- Tier Indicator - 3 navy lines for LEGACY -->
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="products.html">Products</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Portal Legacy</span>
+        </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero-tier tier-legacy">
+        <div class="hero-tier-content">
             <div class="tier-indicator">
-                <div class="tier-indicator-line"></div>
-                <div class="tier-indicator-line"></div>
-                <div class="tier-indicator-line"></div>
+                <div class="tier-line" style="background: var(--accent-legacy);"></div>
+                <div class="tier-line" style="background: var(--accent-legacy);"></div>
+                <div class="tier-line" style="background: var(--accent-legacy);"></div>
             </div>
-            <div class="tier-label">Portal Legacy</div>
-            <h1>Built to last.<br>Built to matter.</h1>
-            <p class="hero-tagline">Some spaces aren't just functional—they're foundational.</p>
-            
-            <div class="hero-cta">
-                <a href="#consultation" class="btn btn-primary">Request Bespoke Consultation</a>
+            <p class="tier-label" style="color: var(--accent-legacy);">Portal Legacy</p>
+            <h1 class="text-display">Built to last.<br>Built to matter.</h1>
+            <p class="hero-tier-desc text-body">For spaces that aren't just functional—they're foundational. Hand-finished materials, bespoke engineering, German precision. For garages that will become part of the story.</p>
+            <div class="hero-actions">
+                <a href="#products" class="btn btn-primary btn-lg" style="background: var(--accent-legacy); border-color: var(--accent-legacy);">View Products</a>
+                <a href="contact.html" class="btn btn-secondary btn-lg">Request Bespoke</a>
             </div>
         </div>
     </section>
-    
+
+    <!-- HP Garage Landmark -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="grid-3" style="max-width: 800px; margin: 0 auto;">
+                <div class="landmark-item">
+                    <div class="landmark-number">1938</div>
+                    <p class="landmark-label">Bill & Dave started here</p>
+                </div>
+                <div class="landmark-item">
+                    <div class="landmark-item">
+                    <div class="landmark-number">#976</div>
+                    <p class="landmark-label">California Historic Landmark</p>
+                </div>
+                </div>
+                <div class="landmark-item">
+                    <div class="landmark-number">∞</div>
+                    <p class="landmark-label">Possibilities await</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Overview Section -->
-    <section class="section overview-section">
-        <div class="section-header">
-            <div class="section-tag">The Legacy Philosophy</div>
-            <h2>Three Pillars of Distinction</h2>
-        </div>
-        
-        <div class="overview-grid">
-            <div class="overview-item">
-                <h3>Bespoke</h3>
-                <p>Fully custom design tailored to your vision. Every detail—from proportions to finishes—is crafted specifically for your space, ensuring a door that exists nowhere else.</p>
+    <section class="section" style="background: var(--color-gray-50);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Why Portal Legacy</span>
+                <h2 class="section-title text-title">Spaces that become part of the story</h2>
+                <p class="section-subtitle text-body">Some garages aren't just functional—they're foundational. Hand-finished materials, bespoke engineering, German precision.</p>
             </div>
-            <div class="overview-item">
-                <h3>Architectural</h3>
-                <p>Premium materials selected for their beauty and endurance. Wood veneers, architectural glass, and forged steel combine to create doors that enhance your home's character.</p>
-            </div>
-            <div class="overview-item">
-                <h3>Legacy</h3>
-                <p>Spaces that become part of the story. These are doors built to outlast trends, to be admired decades from now, to mark the threshold where meaningful work happens.</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Products Section -->
-    <section class="section products-section">
-        <div class="section-header">
-            <div class="section-tag">Legacy Collection</div>
-            <h2>Masterpieces of Engineering</h2>
-            <p>Two exceptional doors for those who demand the extraordinary.</p>
-        </div>
-        
-        <div class="products-grid">
-            <a href="product-woodland-carriage.html" class="product-card">
-                <img src="images/sanctuary_garage.jpg" alt="Woodland Carriage Garage Door" class="product-image">
-                <div class="product-content">
-                    <div class="product-id">ID: 26 — Portal Legacy</div>
-                    <h3 class="product-name">Woodland Carriage</h3>
-                    
-                    <span class="product-link">View Details →</span>
-                </div>
-            </a>
             
-            <a href="product-full-view.html" class="product-card">
-                <img src="images/glass_garage.jpg" alt="Full-View Aluminium Garage Door" class="product-image">
-                <div class="product-content">
-                    <div class="product-id">ID: 27 — Portal Legacy</div>
-                    <h3 class="product-name">Full-View Aluminium</h3>
-                    
-                    <span class="product-link">View Details →</span>
+            <div class="grid-3" style="max-width: 1000px; margin: 0 auto;">
+                <div class="text-center" style="padding: var(--space-xl);">
+                    <div style="width: 64px; height: 64px; background: #F0F4F8; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-legacy)" stroke-width="2">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                            <polyline points="2 17 12 22 22 17"/>
+                            <polyline points="2 12 12 17 22 12"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-sm);">Premium Materials</h3>
+                    <p style="font-size: 0.9375rem; color: var(--color-gray-600); line-height: 1.6;">Wood veneers, architectural glass, and forged steel for timeless appeal.</p>
                 </div>
-            </a>
+                
+                <div class="text-center" style="padding: var(--space-xl);">
+                    <div style="width: 64px; height: 64px; background: #F0F4F8; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-legacy)" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-sm);">German Engineering</h3>
+                    <p style="font-size: 0.9375rem; color: var(--color-gray-600); line-height: 1.6;">German-engineered motor with 50,000-cycle lifespan guarantee.</p>
+                </div>
+                
+                <div class="text-center" style="padding: var(--space-xl);">
+                    <div style="width: 64px; height: 64px; background: #F0F4F8; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-legacy)" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-sm);">Lifetime Warranty</h3>
+                    <p style="font-size: 0.9375rem; color: var(--color-gray-600); line-height: 1.6;">Craftsmanship warranty that lasts as long as your legacy.</p>
+                </div>
+            </div>
         </div>
     </section>
-    
+
+    <!-- Products Section -->
+    <section class="section tier-products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Portal Legacy Collection</span>
+                <h2 class="section-title text-title">Architectural statements</h2>
+                <p class="section-subtitle text-body">For garages that will become part of your story.</p>
+            </div>
+            
+            <div class="products-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 900px; margin: 0 auto;">
+                <a href="product-woodland-carriage.html" class="product-card tier-legacy">
+                    <img src="images/sanctuary_garage.jpg" alt="Woodland Carriage Garage Door" class="product-card-image">
+                    <div class="product-card-body">
+                        <div class="product-card-category">Portal Legacy</div>
+                        <h3 class="product-card-title">Woodland Carriage</h3>
+                        <p class="product-card-desc">Rustic carriage-house appeal with woodland-inspired design. For distinctive homes that demand character.</p>
+                    </div>
+                </a>
+                
+                <a href="product-full-view.html" class="product-card tier-legacy">
+                    <img src="images/glass_garage.jpg" alt="Full-View Aluminium Garage Door" class="product-card-image">
+                    <div class="product-card-body">
+                        <div class="product-card-category">Portal Legacy</div>
+                        <h3 class="product-card-title">Full-View Aluminium</h3>
+                        <p class="product-card-desc">Contemporary aluminum and glass design maximizing natural light. Fully bespoke architectural statement.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
-    <section class="section features-section">
-        <div class="section-header">
-            <div class="section-tag">Uncompromising Quality</div>
-            <h2>What Sets Legacy Apart</h2>
-        </div>
-        
-        <div class="features-grid">
-            <div class="feature-item">
-                <h4>Premium Materials</h4>
-                <p>Wood veneers, architectural glass, and forged steel selected for beauty and longevity.</p>
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What's Included</span>
+                <h2 class="section-title text-title">Every Portal Legacy Features</h2>
+                <p class="section-subtitle text-body">Uncompromising quality for exceptional spaces.</p>
             </div>
-            <div class="feature-item">
-                <h4>Fully Bespoke Design</h4>
-                <p>Every door is custom-engineered to your exact specifications and aesthetic vision.</p>
-            </div>
-            <div class="feature-item">
-                <h4>German-Engineered Motor</h4>
-                <p>50,000-cycle lifespan ensuring decades of whisper-quiet, reliable operation.</p>
-            </div>
-            <div class="feature-item">
-                <h4>Integrated Climate Control</h4>
-                <p>Advanced thermal management maintaining optimal conditions year-round.</p>
-            </div>
-            <div class="feature-item">
-                <h4>Biometric Entry Systems</h4>
-                <p>State-of-the-art security with fingerprint and facial recognition access.</p>
-            </div>
-            <div class="feature-item">
-                <h4>Lifetime Craftsmanship Warranty</h4>
-                <p>Our commitment to quality backed by comprehensive lifetime protection.</p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon" style="background: rgba(30, 58, 95, 0.1);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-legacy)" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Bespoke Design</h4>
+                        <p>Fully customized to your specifications</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon" style="background: rgba(30, 58, 95, 0.1);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-legacy)" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Premium Motor</h4>
+                        <p>German-engineered 50,000-cycle motor</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon" style="background: rgba(30, 58, 95, 0.1);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-legacy)" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Climate Control</h4>
+                        <p>Integrated temperature management</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon" style="background: rgba(30, 58, 95, 0.1);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-legacy)" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Biometric Entry</h4>
+                        <p>Advanced access control systems</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon" style="background: rgba(30, 58, 95, 0.1);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-legacy)" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Artist Collaboration</h4>
+                        <p>Exclusive design partnership options</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon" style="background: rgba(30, 58, 95, 0.1);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-legacy)" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h4>Lifetime Warranty</h4>
+                        <p>Craftsmanship warranty included</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- Quote Section -->
+    <section class="section" style="background: #F0F4F8;">
+        <div class="container">
+            <div class="quote-section">
+                <p class="quote-text">"The HP Garage, 367 Addison Avenue, Palo Alto. California Historical Landmark #976. Some spaces change the world. What will yours become?"</p>
+                <p class="quote-author">— Portal Legacy Manifesto</p>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
-    <section class="cta-section" id="consultation">
-        <p class="cta-quote">"The difference between ordinary and extraordinary is that little extra—and that little extra is everything we do."</p>
-        <a href="contact.html" class="btn btn-primary">Request Bespoke Consultation</a>
+    <section class="section section-dark">
+        <div class="container container-narrow text-center">
+            <span class="section-tag">Ready to Build Your Legacy?</span>
+            <h2 class="text-title mb-4">Some spaces become part of the story</h2>
+            <p class="text-body mb-5" style="color: var(--color-gray-400);">Request a bespoke consultation and begin creating your legacy.</p>
+            <a href="contact.html" class="btn btn-white btn-lg">Request Bespoke Consultation</a>
+        </div>
     </section>
-    
+
     <!-- Footer -->
-    <footer>
-        <div class="footer-logo">Portal</div>
-        <div class="footer-tagline">Where Potential Becomes Real</div>
+    <footer class="footer">
+        <div class="footer-logo">
+            <div class="nav-logo-icon">
+                <div class="nav-logo-arch"></div>
+            </div>
+            Portal
+        </div>
+        <p class="footer-tagline">Where Potential Becomes Real</p>
         <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
-            <li><a href="about.html">Stories</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>

@@ -3,434 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us — Portal</title>
+    <title>Contact — Portal Garage Doors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-new.css">
     <style>
-        :root {
-            --portal-black: #1A1A1A;
-            --concrete-gray: #B0B0B0;
-            --cloud-white: #F5F5F5;
-            --sky-blue: #4A90E2;
-            --forge-gold: #D4A574;
-            --navy-depth: #1E3A5F;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--cloud-white);
-            color: var(--portal-black);
-            line-height: 1.6;
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 3rem;
-            background: linear-gradient(to bottom, rgba(245,245,245,0.98), rgba(245,245,245,0.9));
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(26,26,26,0.05);
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            color: var(--portal-black);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-transform: uppercase;
-        }
-        
-        .logo-icon {
-            width: 28px;
-            height: 32px;
-            position: relative;
-        }
-        
-        .logo-icon::before,
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            width: 3px;
-            height: 28px;
-            background: var(--portal-black);
-            bottom: 0;
-        }
-        
-        .logo-icon::before { left: 2px; }
-        .logo-icon::after { right: 2px; }
-        
-        .logo-arch {
-            position: absolute;
-            top: 0;
-            left: 2px;
-            right: 2px;
-            height: 10px;
-            border-top: 3px solid var(--portal-black);
-            border-radius: 50% 50% 0 0;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: var(--portal-black);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            opacity: 1;
-        }
-        
-        .breadcrumb {
-            padding: 6rem 3rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.875rem;
-            color: var(--concrete-gray);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .breadcrumb a {
-            color: var(--concrete-gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .breadcrumb a:hover {
-            color: var(--portal-black);
-        }
-        
-        .breadcrumb .separator { opacity: 0.5; }
-        .breadcrumb .current { color: var(--portal-black); font-weight: 600; }
-        
-        .hero {
-            padding: 2rem 3rem 4rem;
+        .page-header {
+            padding: calc(100px + var(--space-2xl)) 0 var(--space-3xl);
             text-align: center;
-            max-width: 800px;
+        }
+        
+        .page-header h1 {
+            margin-bottom: var(--space-md);
+        }
+        
+        .page-header p {
+            max-width: 600px;
             margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--portal-black);
-            opacity: 0.7;
-            line-height: 1.7;
-        }
-        
-        .contact-section {
-            padding: 2rem 3rem 5rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            color: var(--color-gray-600);
         }
         
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-        
-        @media (max-width: 900px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-        }
-        
-        .contact-info h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: -0.01em;
-        }
-        
-        .contact-info p {
-            font-size: 1rem;
-            color: var(--portal-black);
-            opacity: 0.7;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-        
-        .contact-method {
-            margin-bottom: 2rem;
-        }
-        
-        .contact-method h3 {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--concrete-gray);
-            margin-bottom: 0.5rem;
-        }
-        
-        .contact-method p {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin: 0;
-            opacity: 1;
-        }
-        
-        .contact-method a {
-            color: var(--portal-black);
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-        
-        .contact-method a:hover {
-            opacity: 0.7;
-        }
-        
-        .contact-form {
-            background: white;
-            padding: 2.5rem;
-            border: 1px solid rgba(26,26,26,0.06);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--portal-black);
-            margin-bottom: 0.5rem;
-        }
-        
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(26,26,26,0.15);
-            font-family: inherit;
-            font-size: 1rem;
-            color: var(--portal-black);
-            background: var(--cloud-white);
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--portal-black);
-        }
-        
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .btn {
-            padding: 1.125rem 2.5rem;
-            font-size: 0.875rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: inherit;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            border: 2px solid var(--portal-black);
-            background: var(--portal-black);
-            color: var(--cloud-white);
-            width: 100%;
-            justify-content: center;
-        }
-        
-        .btn:hover {
-            background: transparent;
-            color: var(--portal-black);
-        }
-        
-        .tiers-section {
-            padding: 5rem 3rem;
-            background: var(--portal-black);
-            color: var(--cloud-white);
-        }
-        
-        .tiers-section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-        }
-        
-        .tiers-section-header h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-        
-        .tiers-section-header p {
-            opacity: 0.7;
-        }
-        
-        .tiers-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: var(--space-4xl);
             max-width: 1000px;
             margin: 0 auto;
         }
         
-        @media (max-width: 900px) {
-            .tiers-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .tier-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .tier-card h3 {
-            font-size: 1.125rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .tier-card.one h3 { color: var(--sky-blue); }
-        .tier-card.craft h3 { color: var(--forge-gold); }
-        .tier-card.legacy h3 { color: var(--cloud-white); }
-        
-        .tier-card p {
-            font-size: 0.875rem;
-            opacity: 0.6;
-            margin-bottom: 1rem;
-        }
-        
-        .tier-card .price {
-            font-size: 1rem;
-            font-weight: 700;
-            opacity: 0.9;
-        }
-        
-        footer {
-            padding: 4rem 3rem;
-            border-top: 1px solid rgba(26,26,26,0.08);
-            text-align: center;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        
-        .footer-tagline {
-            font-size: 0.9375rem;
-            color: var(--concrete-gray);
-            margin-bottom: 2rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: var(--portal-black);
-            opacity: 0.6;
-            text-decoration: none;
-            font-size: 0.875rem;
+        .contact-info h3 {
+            font-size: 1.25rem;
             font-weight: 600;
-            transition: opacity 0.3s;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-method {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .contact-method-label {
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            color: var(--color-gray-500);
+            margin-bottom: var(--space-xs);
         }
         
-        .footer-links a:hover {
-            opacity: 1;
+        .contact-method-value {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--color-black);
         }
         
-        .footer-copy {
-            color: var(--concrete-gray);
+        .contact-method-value a {
+            color: var(--color-black);
+            transition: color var(--transition-fast);
+        }
+        
+        .contact-method-value a:hover {
+            color: var(--color-gray-600);
+        }
+        
+        .contact-form {
+            background: var(--color-gray-50);
+            padding: var(--space-2xl);
+            border-radius: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-label {
+            display: block;
             font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-xs);
+            color: var(--color-gray-700);
+        }
+        
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: var(--space-sm) var(--space-md);
+            font-family: inherit;
+            font-size: 1rem;
+            border: 1.5px solid var(--color-gray-200);
+            border-radius: 10px;
+            background: var(--color-white);
+            transition: border-color var(--transition-fast);
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--color-black);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+        
+        .form-submit {
+            width: 100%;
+            padding: var(--space-md);
+            font-size: 1rem;
+            font-weight: 600;
+            background: var(--color-black);
+            color: var(--color-white);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+        
+        .form-submit:hover {
+            background: var(--color-gray-800);
+            transform: translateY(-2px);
+        }
+        
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--color-gray-100);
+            padding: var(--space-lg) 0;
+        }
+        
+        .faq-question {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .faq-answer {
+            font-size: 0.9375rem;
+            color: var(--color-gray-600);
+            line-height: 1.6;
         }
         
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .breadcrumb,
-            .hero,
-            .contact-section,
-            .tiers-section {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">
-            <div class="logo-icon">
-                <div class="logo-arch"></div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">
+                <div class="nav-logo-arch"></div>
             </div>
             Portal
         </a>
@@ -441,102 +180,139 @@
             <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
     </nav>
-    
-    <div class="breadcrumb">
-        <a href="index.html">Home</a>
-        <span class="separator">/</span>
-        <span class="current">Contact Us</span>
+
+    <!-- Breadcrumb & Header -->
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Contact</span>
+        </nav>
     </div>
-    
-    <section class="hero">
-        <h1>Get in Touch</h1>
-        <p>Ready to transform your garage? Have questions about which PORTAL is right for you? We're here to help.</p>
+
+    <header class="page-header">
+        <div class="container container-narrow">
+            <h1 class="text-headline">Let's build your portal</h1>
+            <p class="text-body">Tell us what you're building. We'll recommend the right tier, finishes, and hardware for your space.</p>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in touch</h3>
+                    
+                    <div class="contact-method">
+                        <p class="contact-method-label">Email</p>
+                        <p class="contact-method-value">
+                            <a href="mailto:hello@portal.doors">hello@portal.doors</a>
+                        </p>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <p class="contact-method-label">Phone</p>
+                        <p class="contact-method-value">
+                            <a href="tel:+1-800-PORTAL-1">1-800-PORTAL-1</a>
+                        </p>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <p class="contact-method-label">Hours</p>
+                        <p class="contact-method-value">Mon–Fri: 8am–6pm<br>Sat: 9am–4pm</p>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <p class="contact-method-label">Showroom</p>
+                        <p class="contact-method-value">367 Addison Avenue<br>Palo Alto, CA 94301</p>
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Name</label>
+                        <input type="text" id="name" class="form-input" placeholder="Your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone</label>
+                        <input type="tel" id="phone" class="form-input" placeholder="(555) 123-4567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="tier">Interested In</label>
+                        <select id="tier" class="form-select">
+                            <option value="">Select a tier...</option>
+                            <option value="one">Portal One — Start somewhere</option>
+                            <option value="craft">Portal Craft — Make it yours</option>
+                            <option value="legacy">Portal Legacy — Built to last</option>
+                            <option value="unsure">Not sure yet</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" class="form-textarea" placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
     </section>
-    
-    <section class="contact-section">
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h2>Start the Conversation</h2>
-                <p>Whether you're ready to schedule a consultation or just exploring options, we'd love to hear from you. Every great project starts with a conversation.</p>
-                
-                <div class="contact-method">
-                    <h3>Phone</h3>
-                    <p><a href="tel:+18005551234">1-800-555-1234</a></p>
-                </div>
-                
-                <div class="contact-method">
-                    <h3>Email</h3>
-                    <p><a href="mailto:hello@portal.com">hello@portal.com</a></p>
-                </div>
-                
-                <div class="contact-method">
-                    <h3>Hours</h3>
-                    <p>Mon–Fri: 8am–6pm<br>Sat: 9am–4pm</p>
-                </div>
+
+    <!-- FAQ Section -->
+    <section class="section" style="background: var(--color-gray-50);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title text-title">Common questions</h2>
             </div>
             
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your name" required>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <h3 class="faq-question">How long does installation take?</h3>
+                    <p class="faq-answer">Most installations are completed in 4-6 hours. Legacy custom doors may require additional time for precise fitting.</p>
                 </div>
                 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you offer financing?</h3>
+                    <p class="faq-answer">Yes, we offer flexible financing options for all three tiers. Contact us to learn more about payment plans.</p>
                 </div>
                 
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                <div class="faq-item">
+                    <h3 class="faq-question">What's included in the warranty?</h3>
+                    <p class="faq-answer">Portal One includes a 10-year materials warranty. Portal Craft extends that to 15 years. Portal Legacy includes a lifetime craftsmanship warranty.</p>
                 </div>
                 
-                <div class="form-group">
-                    <label for="tier">Interested In</label>
-                    <select id="tier" name="tier">
-                        <option value="">Select a tier...</option>
-                        <option value="one">Portal One (–)</option>
-                        <option value="craft">Portal Craft (–)</option>
-                        <option value="legacy">Portal Legacy (+)</option>
-                        <option value="unsure">Not sure yet</option>
-                    </select>
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I see the doors in person?</h3>
+                    <p class="faq-answer">Absolutely. Visit our showroom at 367 Addison Avenue in Palo Alto, or schedule a consultation for an in-home viewing.</p>
                 </div>
                 
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you service my area?</h3>
+                    <p class="faq-answer">We currently serve the greater Bay Area, Los Angeles, and San Diego. Contact us to confirm availability in your location.</p>
                 </div>
-                
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-        </div>
-    </section>
-    
-    <section class="tiers-section">
-        <div class="tiers-section-header">
-            <h2>Prefer to Browse First?</h2>
-            <p>Explore our three tiers and find the perfect fit for your garage.</p>
-        </div>
-        
-        <div class="tiers-grid">
-            <div class="tier-card one">
-                <h3>Portal One</h3>
-                <p>Start somewhere. Quality without compromise.</p>
-            </div>
-            <div class="tier-card craft">
-                <h3>Portal Craft</h3>
-                <p>Make it yours. For makers and hobbyists.</p>
-            </div>
-            <div class="tier-card legacy">
-                <h3>Portal Legacy</h3>
-                <p>Built to last. Built to matter.</p>
             </div>
         </div>
     </section>
-    
-    <footer>
-        <div class="footer-logo">Portal</div>
-        <div class="footer-tagline">Where Potential Becomes Real</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <div class="nav-logo-icon">
+                <div class="nav-logo-arch"></div>
+            </div>
+            Portal
+        </div>
+        <p class="footer-tagline">Where Potential Becomes Real</p>
         <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>

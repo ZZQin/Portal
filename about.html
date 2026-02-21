@@ -1,413 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us — Portal</title>
+    <title>About — Portal Garage Doors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-new.css">
     <style>
-        :root {
-            --portal-black: #1A1A1A;
-            --concrete-gray: #B0B0B0;
-            --cloud-white: #F5F5F5;
-            --sky-blue: #4A90E2;
-            --forge-gold: #D4A574;
-            --navy-depth: #1E3A5F;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--cloud-white);
-            color: var(--portal-black);
-            line-height: 1.6;
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 3rem;
-            background: linear-gradient(to bottom, rgba(245,245,245,0.98), rgba(245,245,245,0.9));
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(26,26,26,0.05);
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            color: var(--portal-black);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-transform: uppercase;
-        }
-        
-        .logo-icon {
-            width: 28px;
-            height: 32px;
-            position: relative;
-        }
-        
-        .logo-icon::before,
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            width: 3px;
-            height: 28px;
-            background: var(--portal-black);
-            bottom: 0;
-        }
-        
-        .logo-icon::before { left: 2px; }
-        .logo-icon::after { right: 2px; }
-        
-        .logo-arch {
-            position: absolute;
-            top: 0;
-            left: 2px;
-            right: 2px;
-            height: 10px;
-            border-top: 3px solid var(--portal-black);
-            border-radius: 50% 50% 0 0;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: var(--portal-black);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            opacity: 1;
-        }
-        
-        .breadcrumb {
-            padding: 6rem 3rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.875rem;
-            color: var(--concrete-gray);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .breadcrumb a {
-            color: var(--concrete-gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .breadcrumb a:hover {
-            color: var(--portal-black);
-        }
-        
-        .breadcrumb .separator { opacity: 0.5; }
-        .breadcrumb .current { color: var(--portal-black); font-weight: 600; }
-        
-        .hero {
-            padding: 2rem 3rem 4rem;
+        .page-header {
+            padding: calc(100px + var(--space-2xl)) 0 var(--space-3xl);
             text-align: center;
-            max-width: 900px;
+        }
+        
+        .page-header h1 {
+            margin-bottom: var(--space-md);
+        }
+        
+        .page-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--color-gray-600);
+        }
+        
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4xl);
+            align-items: center;
+            max-width: 1100px;
             margin: 0 auto;
         }
         
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
+        .story-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
         }
         
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--portal-black);
-            opacity: 0.7;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.7;
+        .story-image img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
         }
         
-        .section {
-            padding: 5rem 3rem;
-            max-width: 1000px;
-            margin: 0 auto;
+        .story-content h2 {
+            margin-bottom: var(--space-lg);
         }
         
-        .section-dark {
-            background: var(--portal-black);
-            color: var(--cloud-white);
-            max-width: 100%;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-tag {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--concrete-gray);
-            margin-bottom: 1rem;
-        }
-        
-        .section-dark .section-tag {
-            color: var(--concrete-gray);
-        }
-        
-        .section h2 {
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: -0.01em;
-        }
-        
-        .section p {
-            font-size: 1.125rem;
-            color: var(--portal-black);
-            opacity: 0.75;
+        .story-content p {
+            font-size: 1.0625rem;
+            color: var(--color-gray-600);
             line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .section-dark p {
-            color: var(--cloud-white);
-            opacity: 0.85;
+            margin-bottom: var(--space-md);
         }
         
         .values-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            margin-top: 3rem;
+            gap: var(--space-xl);
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
-        @media (max-width: 768px) {
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .value-item {
+        .value-card {
             text-align: center;
+            padding: var(--space-xl);
         }
         
         .value-number {
             font-size: 3rem;
-            font-weight: 800;
-            color: var(--forge-gold);
-            margin-bottom: 0.5rem;
-        }
-        
-        .value-item h3 {
-            font-size: 1.125rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            color: var(--color-black);
+            line-height: 1;
+            margin-bottom: var(--space-sm);
         }
         
-        .value-item p {
+        .value-label {
             font-size: 0.9375rem;
-            opacity: 0.7;
-            margin: 0;
+            color: var(--color-gray-600);
         }
         
-        .story-quote {
-            font-size: 1.75rem;
-            font-weight: 300;
-            font-style: italic;
-            line-height: 1.5;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-        
-        .founders-grid {
+        .team-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            margin-top: 4rem;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            gap: var(--space-xl);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .team-card {
+            text-align: center;
+        }
+        
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--color-gray-100);
+            border-radius: 50%;
+            margin: 0 auto var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-gray-600);
+        }
+        
+        .team-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .team-role {
+            font-size: 0.9375rem;
+            color: var(--color-gray-500);
         }
         
         @media (max-width: 768px) {
-            .founders-grid {
+            .story-section {
                 grid-template-columns: 1fr;
             }
-        }
-        
-        .founder-item {
-            text-align: center;
-        }
-        
-        .founder-item h4 {
-            font-size: 0.875rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .founder-item p {
-            font-size: 0.875rem;
-            opacity: 0.6;
-            margin: 0;
-        }
-        
-        .cta-section {
-            text-align: center;
-            padding: 4rem 3rem;
-            background: var(--portal-black);
-        }
-        
-        .cta-section h2 {
-            color: var(--cloud-white);
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-        
-        .cta-section p {
-            color: var(--cloud-white);
-            opacity: 0.7;
-            margin-bottom: 2rem;
-        }
-        
-        .btn {
-            padding: 1.125rem 2.5rem;
-            font-size: 0.875rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: inherit;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-        
-        .btn-primary {
-            background: var(--cloud-white);
-            border: 2px solid var(--cloud-white);
-            color: var(--portal-black);
-        }
-        
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--cloud-white);
-        }
-        
-        footer {
-            padding: 4rem 3rem;
-            border-top: 1px solid rgba(26,26,26,0.08);
-            text-align: center;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        
-        .footer-tagline {
-            font-size: 0.9375rem;
-            color: var(--concrete-gray);
-            margin-bottom: 2rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: var(--portal-black);
-            opacity: 0.6;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            transition: opacity 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-        }
-        
-        .footer-copy {
-            color: var(--concrete-gray);
-            font-size: 0.875rem;
-        }
-        
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
             
-            .nav-links {
-                display: none;
-            }
-            
-            .breadcrumb,
-            .hero,
-            .section {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
+            .values-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">
-            <div class="logo-icon">
-                <div class="logo-arch"></div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">
+                <div class="nav-logo-arch"></div>
             </div>
             Portal
         </a>
@@ -418,80 +147,133 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-    
-    <div class="breadcrumb">
-        <a href="index.html">Home</a>
-        <span class="separator">/</span>
-        <span class="current">About Us</span>
+
+    <!-- Breadcrumb & Header -->
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">About</span>
+        </nav>
     </div>
-    
-    <section class="hero">
-        <h1>Our Story</h1>
-        <p>Every revolutionary company—Apple, HP, Dyson—began in a garage. We believe the garage door isn't just a product. It's a portal to possibility.</p>
-    </section>
-    
+
+    <header class="page-header">
+        <div class="container container-narrow">
+            <h1 class="text-headline">Our Story</h1>
+            <p class="text-body">Every revolutionary company began in a garage. We build the doors that open into possibility.</p>
+        </div>
+    </header>
+
+    <!-- Story Section -->
     <section class="section">
-        <div class="section-header">
-            <div class="section-tag">Our Mission</div>
-            <h2>Where Potential Becomes Real</h2>
+        <div class="container">
+            <div class="story-section">
+                <div class="story-image">
+                    <img src="images/workshop_interior.jpg" alt="Craftsman workshop">
+                </div>
+                <div class="story-content">
+                    <span class="section-tag" style="text-align: left;">The Beginning</span>
+                    <h2 class="text-title">Built by makers,<br>for makers</h2>
+                    <p>PORTAL was founded on a simple belief: the garage isn't just storage. It's where potential becomes real. Every revolutionary company—Apple, HP, Dyson—started in a garage with nothing but conviction.</p>
+                    <p>We set out to build garage doors worthy of those spaces. Doors that don't just open and close, but that mark the threshold between dreaming and doing.</p>
+                    <p>Today, we offer three tiers of garage doors—ONE, CRAFT, and LEGACY—each designed for different journeys, but all built with the same commitment to quality and purpose.</p>
+                </div>
+            </div>
         </div>
-        <p>PORTAL is founded on a simple belief: <strong>the garage door isn't a product—it's a portal to possibility</strong>. Every time that door opens, it's an invitation to build, to dream, to start something that doesn't yet exist.</p>
-        <p>We design and install garage doors that open into spaces where life's best work happens—whether that's building a company, perfecting a craft, or reclaiming time for what matters.</p>
     </section>
-    
+
+    <!-- Values Section -->
+    <section class="section" style="background: var(--color-gray-50);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Values</span>
+                <h2 class="section-title text-title">What we believe</h2>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div style="width: 64px; height: 64px; background: var(--color-white); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg); box-shadow: var(--shadow-sm);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-black)" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-sm);">Intentionality</h3>
+                    <p style="font-size: 0.9375rem; color: var(--color-gray-600); line-height: 1.6;">Your garage deserves more than "good enough." Every detail matters.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div style="width: 64px; height: 64px; background: var(--color-white); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg); box-shadow: var(--shadow-sm);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-black)" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-sm);">Craft</h3>
+                    <p style="font-size: 0.9375rem; color: var(--color-gray-600); line-height: 1.6;">Every door is engineered and designed, not just manufactured.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div style="width: 64px; height: 64px; background: var(--color-white); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg); box-shadow: var(--shadow-sm);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-black)" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-sm);">Access</h3>
+                    <p style="font-size: 0.9375rem; color: var(--color-gray-600); line-height: 1.6;">Greatness starts in garages, and everyone's invited.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">By The Numbers</span>
+                <h2 class="section-title text-title">Our impact</h2>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-number">9</div>
+                    <p class="value-label">Distinct door styles</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">3</div>
+                    <p class="value-label">Product tiers</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">∞</div>
+                    <p class="value-label">Possibilities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
     <section class="section section-dark">
-        <div class="section-header">
-            <div class="section-tag">Brand Values</div>
-            <h2>What We Believe</h2>
-        </div>
-        
-        <div class="values-grid">
-            <div class="value-item">
-                <div class="value-number">01</div>
-                <h3>Intentionality</h3>
-                <p>Your garage deserves more than "good enough." Every detail matters.</p>
-            </div>
-            <div class="value-item">
-                <div class="value-number">02</div>
-                <h3>Craft</h3>
-                <p>Every door is engineered and designed, not just manufactured.</p>
-            </div>
-            <div class="value-item">
-                <div class="value-number">03</div>
-                <h3>Access</h3>
-                <p>Greatness starts in garages, and everyone's invited.</p>
-            </div>
+        <div class="container container-narrow text-center">
+            <span class="section-tag">Join Us</span>
+            <h2 class="text-title mb-4">Ready to cross the threshold?</h2>
+            <p class="text-body mb-5" style="color: var(--color-gray-400);">Let's build the portal to your next chapter.</p>
+            <a href="contact.html" class="btn btn-white btn-lg">Get in Touch</a>
         </div>
     </section>
-    
-    <section class="section section-dark">
-        <p class="story-quote">"Bill and Dave.  in capital. Steve and Woz. Sold a VW bus to buy parts. James Dyson. 5,127 prototypes. They didn't start with venture capital. They started with a door that opened into a space where the impossible became inevitable."</p>
-        
-        <div class="founders-grid">
-            <div class="founder-item">
-                <h4>Hewlett-Packard</h4>
-                <p>367 Addison Avenue, Palo Alto<br>California Historical Landmark #976</p>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <div class="nav-logo-icon">
+                <div class="nav-logo-arch"></div>
             </div>
-            <div class="founder-item">
-                <h4>Apple Computer</h4>
-                <p>2066 Crist Drive, Los Altos<br>The garage where it all began</p>
-            </div>
-            <div class="founder-item">
-                <h4>Dyson</h4>
-                <p>Coach house in Bath, England<br>5,127 prototypes later</p>
-            </div>
+            Portal
         </div>
-    </section>
-    
-    <section class="cta-section">
-        <h2>Ready to Cross the Threshold?</h2>
-        <p>Discover which PORTAL is right for your journey.</p>
-        <a href="products.html" class="btn btn-primary">Explore Our Products</a>
-    </section>
-    
-    <footer>
-        <div class="footer-logo">Portal</div>
-        <div class="footer-tagline">Where Potential Becomes Real</div>
+        <p class="footer-tagline">Where Potential Becomes Real</p>
         <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
