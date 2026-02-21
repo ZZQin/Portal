@@ -3,315 +3,543 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products — Portal Garage Doors</title>
+    <title>Garage Doors — PORTAL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles-new.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --portal-black: #1A1A1A;
+            --portal-white: #FFFFFF;
+            --portal-gray: #B0B0B0;
+            --portal-gray-light: #F5F5F5;
+            --portal-gray-dark: #333333;
+            
+            --one-blue: #4A90E2;
+            --craft-gold: #D4A574;
+            --legacy-navy: #1E3A5F;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--portal-white);
+            color: var(--portal-black);
+            line-height: 1.6;
+        }
+
+        /* Logo System */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-icon {
+            position: relative;
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-arch {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 32px;
+            height: 24px;
+            border: 3px solid currentColor;
+            border-bottom: none;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .logo-lines {
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .logo-line {
+            width: 20px;
+            height: 2px;
+            background: currentColor;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--portal-black);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--portal-black);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            opacity: 1;
+        }
+
         /* Page Header */
         .page-header {
-            padding: calc(100px + var(--space-2xl)) 0 var(--space-3xl);
+            padding: 10rem 2rem 5rem;
             text-align: center;
+            background: var(--portal-black);
+            color: var(--portal-white);
         }
-        
+
+        .page-header .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
         .page-header h1 {
-            margin-bottom: var(--space-md);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
         }
-        
+
         .page-header p {
+            font-size: 1.125rem;
+            opacity: 0.7;
             max-width: 600px;
             margin: 0 auto;
-            color: var(--color-gray-600);
         }
-        
-        /* Tier Section */
+
+        /* Tier Sections */
         .tier-section {
-            padding: var(--space-3xl) 0;
-            border-bottom: 1px solid var(--color-gray-100);
+            padding: 6rem 2rem;
+            border-bottom: 1px solid var(--portal-gray-light);
         }
-        
+
         .tier-section:last-child {
             border-bottom: none;
         }
-        
+
+        .tier-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .tier-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: var(--space-2xl);
+            margin-bottom: 3rem;
             flex-wrap: wrap;
-            gap: var(--space-md);
+            gap: 1rem;
         }
-        
-        .tier-title-group {
-            display: flex;
-            align-items: center;
-            gap: var(--space-md);
-        }
-        
+
         .tier-title-group h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 2rem;
+            font-weight: 700;
             letter-spacing: -0.01em;
+            margin-bottom: 0.25rem;
         }
-        
+
         .tier-tagline {
-            font-size: 0.9375rem;
-            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.125rem;
+            font-style: italic;
         }
-        
-        .tier-one .tier-tagline { color: var(--accent-one); }
-        .tier-craft .tier-tagline { color: var(--accent-craft); }
-        .tier-legacy .tier-tagline { color: var(--accent-legacy); }
-        
+
+        .tier-one .tier-tagline { color: var(--one-blue); }
+        .tier-craft .tier-tagline { color: var(--craft-gold); }
+        .tier-legacy .tier-tagline { color: var(--legacy-navy); }
+
         .tier-link {
-            font-size: 0.9375rem;
-            font-weight: 500;
-            color: var(--color-gray-600);
-            transition: color var(--transition-fast);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--portal-black);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.2s;
         }
-        
+
         .tier-link:hover {
-            color: var(--color-black);
+            gap: 0.75rem;
         }
-        
+
         /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-xl);
+            gap: 2rem;
         }
-        
-        @media (max-width: 1024px) {
+
+        .product-card {
+            background: var(--portal-gray-light);
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info p {
+            font-size: 0.875rem;
+            color: var(--portal-gray);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 2rem 3rem;
+            background: var(--portal-black);
+            color: var(--portal-white);
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer .logo {
+            color: var(--portal-white);
+        }
+
+        .footer-tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1rem;
+            opacity: 0.6;
+            margin-top: 0.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--portal-white);
+            text-decoration: none;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            font-size: 0.8125rem;
+            opacity: 0.4;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
-        
-        @media (max-width: 640px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
+
             .tier-header {
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
         }
-        
-        /* Legacy section with 2 items */
-        .products-grid-2 {
-            grid-template-columns: repeat(2, 1fr);
-            max-width: 800px;
+
+        @media (max-width: 640px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav">
-        <a href="index.html" class="nav-logo">
-            <div class="nav-logo-icon">
-                <div class="nav-logo-arch"></div>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <div class="logo-arch"></div>
+                <div class="logo-lines">
+                    <div class="logo-line"></div>
+                    <div class="logo-line"></div>
+                    <div class="logo-line"></div>
+                </div>
             </div>
-            Portal
+            <span class="logo-text">PORTAL</span>
         </a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="products.html" class="active">Products</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="products.html" class="active">Garage Doors</a></li>
+            <li><a href="about.html">Our Story</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Breadcrumb & Header -->
-    <div class="container">
-        <nav class="breadcrumb">
-            <a href="index.html">Home</a>
-            <span class="breadcrumb-separator">/</span>
-            <span class="breadcrumb-current">Products</span>
-        </nav>
-    </div>
-
+    <!-- Page Header -->
     <header class="page-header">
-        <div class="container container-narrow">
-            <h1 class="text-headline">Choose your portal</h1>
-            <p class="text-body">Three tiers. Nine distinct styles. One story: your garage isn't storage—it's where potential becomes real.</p>
-        </div>
+        <p class="tagline">Three Tiers, One Story</p>
+        <h1>Find Your Portal</h1>
+        <p>Every garage door we design is a passage to possibility. Choose the tier that matches where you are—and where you're going.</p>
     </header>
 
-    <!-- Products by Tier -->
-    <section class="section" style="padding-top: 0;">
-        <div class="container">
-            <!-- PORTAL ONE -->
-            <div class="tier-section tier-one">
-                <div class="tier-header">
-                    <div class="tier-title-group">
-                        <div class="tier-indicator" style="margin: 0;">
-                            <div class="tier-line" style="background: var(--accent-one);"></div>
-                            <div class="tier-line"></div>
-                            <div class="tier-line"></div>
-                        </div>
-                        <div>
-                            <h2>Portal One</h2>
-                            <span class="tier-tagline">Start somewhere.</span>
-                        </div>
-                    </div>
-                    <a href="tier-one.html" class="tier-link">Explore One →</a>
+    <!-- PORTAL ONE Section -->
+    <section class="tier-section tier-one">
+        <div class="tier-container">
+            <div class="tier-header">
+                <div class="tier-title-group">
+                    <h2>PORTAL ONE</h2>
+                    <p class="tier-tagline">"Start somewhere."</p>
                 </div>
-                
-                <div class="products-grid">
-                    <a href="product-classic.html" class="product-card tier-one">
-                        <img src="images/portal_one.jpg" alt="Classic Garage Door" class="product-card-image">
-                        <div class="product-card-body">
-                            <div class="product-card-category">Portal One</div>
-                            <h3 class="product-card-title">Classic</h3>
-                            <p class="product-card-desc">Our most versatile option. Clean lines, reliable construction, and the perfect entry point to taking your garage seriously.</p>
-                        </div>
-                    </a>
-                    
-                    <a href="product-modern-line.html" class="product-card tier-one">
-                        <img src="images/door_modern_black.jpg" alt="Modern Line Garage Door" class="product-card-image">
-                        <div class="product-card-body">
-                            <div class="product-card-category">Portal One</div>
-                            <h3 class="product-card-title">Modern Line</h3>
-                            <p class="product-card-desc">Contemporary aesthetics for modern homes. Sleek panels and streamlined proportions that make a statement.</p>
-                        </div>
-                    </a>
-                    
-                    <a href="product-reflections.html" class="product-card tier-one">
-                        <img src="images/hero_garage.jpg" alt="Reflections Garage Door" class="product-card-image">
-                        <div class="product-card-body">
-                            <div class="product-card-category">Portal One</div>
-                            <h3 class="product-card-title">Reflections</h3>
-                            <p class="product-card-desc">Smooth, flush panels create a sophisticated appearance. The mirror-like surface reflects the care you put into your space.</p>
-                        </div>
-                    </a>
-                </div>
+                <a href="tier-one.html" class="tier-link">Explore ONE →</a>
             </div>
-
-            <!-- PORTAL CRAFT -->
-            <div class="tier-section tier-craft">
-                <div class="tier-header">
-                    <div class="tier-title-group">
-                        <div class="tier-indicator" style="margin: 0;">
-                            <div class="tier-line" style="background: var(--accent-craft);"></div>
-                            <div class="tier-line" style="background: var(--accent-craft);"></div>
-                            <div class="tier-line"></div>
-                        </div>
-                        <div>
-                            <h2>Portal Craft</h2>
-                            <span class="tier-tagline">Make it yours.</span>
-                        </div>
+            
+            <div class="products-grid">
+                <a href="product-classic.html" class="product-card">
+                    <img src="images/product_classic.jpg" alt="Classic Garage Door" class="product-image">
+                    <div class="product-info">
+                        <h3>Classic</h3>
+                        <p>Clean lines, timeless design. The perfect first step.</p>
                     </div>
-                    <a href="tier-craft.html" class="tier-link">Explore Craft →</a>
-                </div>
+                </a>
                 
-                <div class="products-grid">
-                    <a href="product-craftsman-heritage.html" class="product-card tier-craft">
-                        <img src="images/portal_craft.jpg" alt="Craftsman Heritage Garage Door" class="product-card-image">
-                        <div class="product-card-body">
-                            <div class="product-card-category">Portal Craft</div>
-                            <h3 class="product-card-title">Craftsman Heritage</h3>
-                            <p class="product-card-desc">Artisanal craftsmanship meets modern engineering. Symmetrical panels and timeless design for traditional homes.</p>
-                        </div>
-                    </a>
-                    
-                    <a href="product-savannah-charm.html" class="product-card tier-craft">
-                        <img src="images/door_craftsman.jpg" alt="Savannah Charm Carriage Door" class="product-card-image">
-                        <div class="product-card-body">
-                            <div class="product-card-category">Portal Craft</div>
-                            <h3 class="product-card-title">Savannah Charm</h3>
-                            <p class="product-card-desc">Signature crossbuck design recalling carriage-house character. Decorative window accents bring openness and charm.</p>
-                        </div>
-                    </a>
-                    
-                    <a href="product-estate-carriage.html" class="product-card tier-craft">
-                        <img src="images/luxury_garage.jpg" alt="Estate Carriage Garage Door" class="product-card-image">
-                        <div class="product-card-body">
-                            <div class="product-card-category">Portal Craft</div>
-                            <h3 class="product-card-title">Estate Carriage</h3>
-                            <p class="product-card-desc">Elegant carriage-style design with refined detailing. Premium construction for discerning homeowners.</p>
-                        </div>
-                    </a>
-                    
-                    <a href="product-timberline-classic.html" class="product-card tier-craft">
-                        <img src="images/woodshop_garage.jpg" alt="Timberline Classic Garage Door" class="product-card-image">
-                        <div class="product-card-body">
-                            <div class="product-card-category">Portal Craft</div>
-                            <h3 class="product-card-title">Timberline Classic</h3>
-                            <p class="product-card-desc">Traditional wood-grain aesthetic with modern steel construction. Natural warmth meets lasting durability.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- PORTAL LEGACY -->
-            <div class="tier-section tier-legacy">
-                <div class="tier-header">
-                    <div class="tier-title-group">
-                        <div class="tier-indicator" style="margin: 0;">
-                            <div class="tier-line" style="background: var(--accent-legacy);"></div>
-                            <div class="tier-line" style="background: var(--accent-legacy);"></div>
-                            <div class="tier-line" style="background: var(--accent-legacy);"></div>
-                        </div>
-                        <div>
-                            <h2>Portal Legacy</h2>
-                            <span class="tier-tagline">Built to last. Built to matter.</span>
-                        </div>
+                <a href="product-full-view.html" class="product-card">
+                    <img src="images/product_fullview.jpg" alt="Full View Garage Door" class="product-image">
+                    <div class="product-info">
+                        <h3>Full View</h3>
+                        <p>Natural light, modern aesthetic. See what's possible.</p>
                     </div>
-                    <a href="tier-legacy.html" class="tier-link">Explore Legacy →</a>
-                </div>
-                
-                <div class="products-grid products-grid-2">
-                    <a href="product-woodland-carriage.html" class="product-card tier-legacy">
-                        <img src="images/sanctuary_garage.jpg" alt="Woodland Carriage Garage Door" class="product-card-image">
-                        <div class="product-card-body">
-                            <div class="product-card-category">Portal Legacy</div>
-                            <h3 class="product-card-title">Woodland Carriage</h3>
-                            <p class="product-card-desc">Rustic carriage-house appeal with woodland-inspired design. For distinctive homes that demand character.</p>
-                        </div>
-                    </a>
-                    
-                    <a href="product-full-view.html" class="product-card tier-legacy">
-                        <img src="images/glass_garage.jpg" alt="Full-View Aluminium Garage Door" class="product-card-image">
-                        <div class="product-card-body">
-                            <div class="product-card-category">Portal Legacy</div>
-                            <h3 class="product-card-title">Full-View Aluminium</h3>
-                            <p class="product-card-desc">Contemporary aluminum and glass design maximizing natural light. Fully bespoke architectural statement.</p>
-                        </div>
-                    </a>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="section section-dark">
-        <div class="container container-narrow text-center">
-            <span class="section-tag">Need Help Choosing?</span>
-            <h2 class="text-title mb-4">Not sure which portal is right?</h2>
-            <p class="text-body mb-5" style="color: var(--color-gray-400);">Our team can help you find the perfect door for your space, style, and budget.</p>
-            <a href="contact.html" class="btn btn-white btn-lg">Get in Touch</a>
+    <!-- PORTAL CRAFT Section -->
+    <section class="tier-section tier-craft">
+        <div class="tier-container">
+            <div class="tier-header">
+                <div class="tier-title-group">
+                    <h2>PORTAL CRAFT</h2>
+                    <p class="tier-tagline">"Make it yours."</p>
+                </div>
+                <a href="tier-craft.html" class="tier-link">Explore CRAFT →</a>
+            </div>
+            
+            <div class="products-grid">
+                <a href="product-craftsman-heritage.html" class="product-card">
+                    <img src="images/product_craftsman.jpg" alt="Craftsman Heritage Garage Door" class="product-image">
+                    <div class="product-info">
+                        <h3>Craftsman Heritage</h3>
+                        <p>Hand-finished details for the dedicated maker.</p>
+                    </div>
+                </a>
+                
+                <a href="product-woodland-carriage.html" class="product-card">
+                    <img src="images/product_woodland.jpg" alt="Woodland Carriage Garage Door" class="product-image">
+                    <div class="product-info">
+                        <h3>Woodland Carriage</h3>
+                        <p>Rustic warmth meets modern performance.</p>
+                    </div>
+                </a>
+                
+                <a href="product-savannah-charm.html" class="product-card">
+                    <img src="images/product_savannah.jpg" alt="Savannah Charm Garage Door" class="product-image">
+                    <div class="product-info">
+                        <h3>Savannah Charm</h3>
+                        <p>Southern elegance for your creative sanctuary.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTAL LEGACY Section -->
+    <section class="tier-section tier-legacy">
+        <div class="tier-container">
+            <div class="tier-header">
+                <div class="tier-title-group">
+                    <h2>PORTAL LEGACY</h2>
+                    <p class="tier-tagline">"Built to last."</p>
+                </div>
+                <a href="tier-legacy.html" class="tier-link">Explore LEGACY →</a>
+            </div>
+            
+            <div class="products-grid">
+                <a href="product-timberline-classic.html" class="product-card">
+                    <img src="images/product_timberline.jpg" alt="Timberline Classic Garage Door" class="product-image">
+                    <div class="product-info">
+                        <h3>Timberline Classic</h3>
+                        <p>Architectural-grade wood veneer. A statement of permanence.</p>
+                    </div>
+                </a>
+                
+                <a href="product-modern-line.html" class="product-card">
+                    <img src="images/product_modern.jpg" alt="Modern Line Garage Door" class="product-image">
+                    <div class="product-info">
+                        <h3>Modern Line</h3>
+                        <p>Minimalist precision for the design-obsessed.</p>
+                    </div>
+                </a>
+                
+                <a href="product-reflections.html" class="product-card">
+                    <img src="images/product_reflections.jpg" alt="Reflections Garage Door" class="product-image">
+                    <div class="product-info">
+                        <h3>Reflections</h3>
+                        <p>Mirrored glass panels. Bold. Beautiful. Yours.</p>
+                    </div>
+                </a>
+                
+                <a href="product-estate-carriage.html" class="product-card">
+                    <img src="images/product_estate.jpg" alt="Estate Carriage Garage Door" class="product-image">
+                    <div class="product-info">
+                        <h3>Estate Carriage</h3>
+                        <p>The pinnacle of bespoke garage door craftsmanship.</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-logo">
-            <div class="nav-logo-icon">
-                <div class="nav-logo-arch"></div>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <div class="logo-arch"></div>
+                        <div class="logo-lines">
+                            <div class="logo-line"></div>
+                            <div class="logo-line"></div>
+                            <div class="logo-line"></div>
+                        </div>
+                    </div>
+                    <span class="logo-text">PORTAL</span>
+                </a>
+                <p class="footer-tagline">Where Potential Becomes Real</p>
             </div>
-            Portal
+            
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Garage Doors</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            
+            <p class="footer-copy">© 2026 PORTAL. All rights reserved.</p>
         </div>
-        <p class="footer-tagline">Where Potential Becomes Real</p>
-        <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <p class="footer-copy">© 2026 Portal. All rights reserved.</p>
     </footer>
 </body>
 </html>
