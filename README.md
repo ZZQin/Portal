@@ -2,6 +2,10 @@
 
 Premium garage door e-commerce website built with HTML, CSS, and JavaScript.
 
+## Live Demo
+
+**https://zzqin.github.io/Portal/**
+
 ## Structure
 
 - `index.html` - Homepage
