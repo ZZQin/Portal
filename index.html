@@ -6,163 +6,512 @@
     <title>PORTAL — Where Potential Becomes Real</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles-new.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Hero with image */
-        .hero-visual {
-            margin-top: var(--space-3xl);
-            width: 100%;
-            max-width: 1200px;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        .hero-visual img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 21/9;
-            object-fit: cover;
+
+        :root {
+            --color-black: #0a0a0a;
+            --color-white: #ffffff;
+            --color-gray-100: #f5f5f5;
+            --color-gray-200: #e5e5e5;
+            --color-gray-500: #737373;
+            --accent-one: #f97316;
+            --accent-craft: #8b5cf6;
+            --accent-legacy: #06b6d4;
         }
-        
-        /* Story section */
-        .story-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-4xl);
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter Tight', sans-serif;
+            background: var(--color-black);
+            color: var(--color-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            transition: background 0.3s ease;
         }
-        
-        .story-image {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
+
+        .nav.scrolled {
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
         }
-        
-        .story-image img {
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-white);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo-icon {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--color-white);
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-logo-arch {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--color-white);
+            border-bottom: none;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            opacity: 1;
+        }
+
+        /* Full Screen Sections */
+        .fullscreen-section {
+            height: 100vh;
             width: 100%;
-            aspect-ratio: 4/5;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .fullscreen-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%);
+            z-index: 1;
+        }
+
+        .fullscreen-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            z-index: 0;
         }
-        
-        .story-content h2 {
-            margin-bottom: var(--space-lg);
+
+        .fullscreen-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 2rem;
         }
-        
-        .story-content p {
-            font-size: 1.125rem;
-            color: var(--color-gray-500);
-            line-height: 1.8;
-            margin-bottom: var(--space-lg);
-        }
-        
-        .founders-list {
-            margin-top: var(--space-2xl);
-            padding-top: var(--space-2xl);
-            border-top: 1px solid var(--color-gray-100);
-        }
-        
-        .founder-item {
-            margin-bottom: var(--space-lg);
-        }
-        
-        .founder-item h4 {
+
+        .tagline {
             font-size: 0.875rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: var(--space-xs);
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
         }
-        
-        .founder-item p {
+
+        .headline {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .subheadline {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            font-weight: 400;
+            line-height: 1.6;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--color-white);
+            color: var(--color-black);
             font-size: 0.9375rem;
-            color: var(--color-gray-500);
-            margin: 0;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 100px;
+            transition: all 0.3s ease;
         }
-        
-        /* Tier cards specific */
-        .tier-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-xl);
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+        }
+
+        .cta-button-outline {
+            background: transparent;
+            color: var(--color-white);
+            border: 1px solid rgba(255,255,255,0.3);
+            margin-left: 1rem;
+        }
+
+        .cta-button-outline:hover {
+            background: rgba(255,255,255,0.1);
+            box-shadow: none;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Tier Cards Section */
+        .tiers-section {
+            min-height: 100vh;
+            padding: 8rem 2rem;
+            background: var(--color-white);
+            color: var(--color-black);
+        }
+
+        .tiers-container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        
-        .tier-card {
-            background: var(--color-white);
-            border-radius: 24px;
-            padding: var(--space-2xl);
+
+        .tiers-header {
             text-align: center;
-            border: 1px solid var(--color-gray-100);
-            transition: all var(--transition-base);
+            margin-bottom: 4rem;
+        }
+
+        .tiers-header .tagline {
+            color: var(--color-gray-500);
+            margin-bottom: 1rem;
+        }
+
+        .tiers-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .tiers-header p {
+            font-size: 1.125rem;
+            color: var(--color-gray-500);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .tier-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .tier-card {
+            background: var(--color-gray-100);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
             text-decoration: none;
             color: inherit;
-            display: block;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
         }
-        
+
         .tier-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--color-gray-200);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        
-        .tier-card-name {
+
+        .tier-card.one:hover { border-color: var(--accent-one); }
+        .tier-card.craft:hover { border-color: var(--accent-craft); }
+        .tier-card.legacy:hover { border-color: var(--accent-legacy); }
+
+        .tier-indicator {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-line {
+            width: 24px;
+            height: 4px;
+            background: var(--color-gray-200);
+            border-radius: 2px;
+        }
+
+        .tier-card.one .tier-line:nth-child(1) { background: var(--accent-one); }
+        .tier-card.craft .tier-line:nth-child(1),
+        .tier-card.craft .tier-line:nth-child(2) { background: var(--accent-craft); }
+        .tier-card.legacy .tier-line { background: var(--accent-legacy); }
+
+        .tier-card h3 {
             font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: var(--space-xs);
-            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
         }
-        
-        .tier-card-tagline {
+
+        .tier-tagline {
             font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: var(--space-md);
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
-        
-        .tier-one .tier-card-tagline { color: var(--accent-one); }
-        .tier-craft .tier-card-tagline { color: var(--accent-craft); }
-        .tier-legacy .tier-card-tagline { color: var(--accent-legacy); }
-        
-        .tier-card-desc {
+
+        .tier-card.one .tier-tagline { color: var(--accent-one); }
+        .tier-card.craft .tier-tagline { color: var(--accent-craft); }
+        .tier-card.legacy .tier-tagline { color: var(--accent-legacy); }
+
+        .tier-card p {
             font-size: 0.9375rem;
-            color: var(--color-gray-600);
+            color: var(--color-gray-500);
             line-height: 1.6;
-            margin-bottom: var(--space-xl);
+            margin-bottom: 1.5rem;
         }
-        
-        .tier-card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-xs);
+
+        .tier-link {
             font-size: 0.9375rem;
             font-weight: 600;
-            color: var(--color-black);
-            transition: gap var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.2s;
         }
-        
-        .tier-card:hover .tier-card-link {
-            gap: var(--space-sm);
+
+        .tier-card:hover .tier-link {
+            gap: 0.75rem;
         }
-        
+
+        /* Story Section */
+        .story-section {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .story-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .story-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+        }
+
+        .story-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            padding: 4rem;
+            margin-left: 4rem;
+        }
+
+        .story-content .tagline {
+            margin-bottom: 1rem;
+        }
+
+        .story-content h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--color-black);
+        }
+
+        .cta-content h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 2rem;
+            background: var(--color-black);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            font-size: 0.9375rem;
+            opacity: 0.6;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-copy {
+            font-size: 0.875rem;
+            opacity: 0.5;
+        }
+
+        /* Responsive */
         @media (max-width: 900px) {
-            .story-grid,
+            .nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
             .tier-cards {
                 grid-template-columns: 1fr;
             }
-            
-            .story-image img {
-                aspect-ratio: 16/9;
+
+            .story-content {
+                margin-left: 0;
+                padding: 2rem;
+                max-width: 100%;
+            }
+
+            .story-overlay {
+                background: rgba(0,0,0,0.85);
+            }
+
+            .cta-button-outline {
+                margin-left: 0;
+                margin-top: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" id="navbar">
         <a href="index.html" class="nav-logo">
             <div class="nav-logo-icon">
                 <div class="nav-logo-arch"></div>
@@ -177,114 +526,95 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-tag">Garage doors for spaces that matter</div>
-            <h1 class="text-display">Choose your portal</h1>
-            <p class="text-body">Every revolutionary company—Apple, HP, Dyson—began in a garage. Your garage isn't storage. It's a portal to possibility.</p>
-            <div class="hero-actions">
-                <a href="products.html" class="btn btn-primary btn-lg">Explore Doors</a>
-                <a href="#story" class="btn btn-secondary btn-lg">Our Story</a>
+    <!-- Hero Section - Full Screen -->
+    <section class="fullscreen-section">
+        <img src="images/hero_garage.jpg" alt="Modern garage door" class="fullscreen-bg">
+        <div class="fullscreen-content">
+            <p class="tagline">Garage doors for spaces that matter</p>
+            <h1 class="headline">Choose your portal</h1>
+            <p class="subheadline">Every revolutionary company—Apple, HP, Dyson—began in a garage. Your garage isn't storage. It's a portal to possibility.</p>
+            <div>
+                <a href="products.html" class="cta-button">Explore Doors</a>
+                <a href="#story" class="cta-button cta-button-outline">Our Story</a>
             </div>
         </div>
-        <div class="hero-visual">
-            <img src="images/hero_garage.jpg" alt="Modern garage door opening to reveal a workshop">
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
         </div>
     </section>
 
-    <!-- Three Tiers Section -->
-    <section class="section" id="tiers">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Three Tiers, One Story</span>
-                <h2 class="section-title text-headline">Find your fit</h2>
-                <p class="section-subtitle text-body">Whether you're taking first steps or building a legacy—there's a PORTAL for your journey.</p>
+    <!-- Tiers Section -->
+    <section class="tiers-section">
+        <div class="tiers-container">
+            <div class="tiers-header">
+                <p class="tagline">Three Tiers, One Story</p>
+                <h2>Find your fit</h2>
+                <p>Whether you're taking first steps or building a legacy—there's a PORTAL for your journey.</p>
             </div>
             
             <div class="tier-cards">
-                <!-- Portal One -->
-                <a href="tier-one.html" class="tier-card tier-one">
+                <a href="tier-one.html" class="tier-card one">
                     <div class="tier-indicator">
-                        <div class="tier-line" style="background: var(--accent-one);"></div>
+                        <div class="tier-line"></div>
                         <div class="tier-line"></div>
                         <div class="tier-line"></div>
                     </div>
-                    <h3 class="tier-card-name">Portal One</h3>
-                    <p class="tier-card-tagline">Start somewhere.</p>
-                    <p class="tier-card-desc">Engineered for durability, designed for clarity, built to open into whatever comes next. No compromise on quality.</p>
-                    <span class="tier-card-link">Explore One →</span>
+                    <h3>Portal One</h3>
+                    <p class="tier-tagline">Start somewhere.</p>
+                    <p>Engineered for durability, designed for clarity, built to open into whatever comes next. No compromise on quality.</p>
+                    <span class="tier-link">Explore One →</span>
                 </a>
                 
-                <!-- Portal Craft -->
-                <a href="tier-craft.html" class="tier-card tier-craft">
+                <a href="tier-craft.html" class="tier-card craft">
                     <div class="tier-indicator">
-                        <div class="tier-line" style="background: var(--accent-craft);"></div>
-                        <div class="tier-line" style="background: var(--accent-craft);"></div>
+                        <div class="tier-line"></div>
+                        <div class="tier-line"></div>
                         <div class="tier-line"></div>
                     </div>
-                    <h3 class="tier-card-name">Portal Craft</h3>
-                    <p class="tier-card-tagline">Make it yours.</p>
-                    <p class="tier-card-desc">For people who've committed to their garage as a dedicated space. Customizable finishes, whisper-quiet operation.</p>
-                    <span class="tier-card-link">Explore Craft →</span>
+                    <h3>Portal Craft</h3>
+                    <p class="tier-tagline">Make it yours.</p>
+                    <p>For people who've committed to their garage as a dedicated space. Customizable finishes, whisper-quiet operation.</p>
+                    <span class="tier-link">Explore Craft →</span>
                 </a>
                 
-                <!-- Portal Legacy -->
-                <a href="tier-legacy.html" class="tier-card tier-legacy">
+                <a href="tier-legacy.html" class="tier-card legacy">
                     <div class="tier-indicator">
-                        <div class="tier-line" style="background: var(--accent-legacy);"></div>
-                        <div class="tier-line" style="background: var(--accent-legacy);"></div>
-                        <div class="tier-line" style="background: var(--accent-legacy);"></div>
+                        <div class="tier-line"></div>
+                        <div class="tier-line"></div>
+                        <div class="tier-line"></div>
                     </div>
-                    <h3 class="tier-card-name">Portal Legacy</h3>
-                    <p class="tier-card-tagline">Built to last.</p>
-                    <p class="tier-card-desc">For spaces that aren't just functional—they're foundational. Hand-finished materials, bespoke engineering.</p>
-                    <span class="tier-card-link">Explore Legacy →</span>
+                    <h3>Portal Legacy</h3>
+                    <p class="tier-tagline">Built to last.</p>
+                    <p>For spaces that aren't just functional—they're foundational. Hand-finished materials, bespoke engineering.</p>
+                    <span class="tier-link">Explore Legacy →</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Story Section -->
-    <section class="section section-dark" id="story">
-        <div class="container">
-            <div class="story-grid">
-                <div class="story-image">
-                    <img src="images/workshop_interior.jpg" alt="Historic garage workshop interior">
-                </div>
-                <div class="story-content">
-                    <span class="section-tag">The Origin</span>
-                    <h2 class="text-headline">Every empire started here</h2>
-                    <p>In 1938, Bill Hewlett and Dave Packard started in a 12×18-foot garage with $538 in capital. That garage became California Historical Landmark #976—the "Birthplace of Silicon Valley."</p>
-                    <p>Steve Jobs and Steve Wozniak sold a VW bus to buy parts for 50 motherboards. James Dyson built 5,127 prototypes—every single one a "failure"—until it wasn't.</p>
-                    <p>They didn't start with venture capital. They started with a door that opened into a space where the impossible became inevitable.</p>
-                    
-                    <div class="founders-list">
-                        <div class="founder-item">
-                            <h4>Hewlett-Packard</h4>
-                            <p>367 Addison Avenue, Palo Alto<br>California Historical Landmark #976</p>
-                        </div>
-                        <div class="founder-item">
-                            <h4>Apple Computer</h4>
-                            <p>2066 Crist Drive, Los Altos<br>The garage where it all began</p>
-                        </div>
-                        <div class="founder-item">
-                            <h4>Dyson</h4>
-                            <p>Coach house in Bath, England<br>5,127 prototypes later</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Story Section - Full Screen -->
+    <section class="story-section" id="story">
+        <img src="images/workshop_interior.jpg" alt="Historic garage workshop" class="story-bg">
+        <div class="story-overlay"></div>
+        <div class="story-content">
+            <p class="tagline">The Origin</p>
+            <h2>Every empire started here</h2>
+            <p>In 1938, Bill Hewlett and Dave Packard started in a 12×18-foot garage with $538 in capital. That garage became California Historical Landmark #976—the "Birthplace of Silicon Valley."</p>
+            <p>Steve Jobs and Steve Wozniak sold a VW bus to buy parts for 50 motherboards. James Dyson built 5,127 prototypes—every single one a "failure"—until it wasn't.</p>
+            <a href="about.html" class="cta-button">Read Our Story</a>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="section">
-        <div class="container container-narrow text-center">
-            <span class="section-tag">Get Started</span>
-            <h2 class="text-headline mb-4">Let's build your portal</h2>
-            <p class="text-body mb-5">Tell us what you're building. We'll recommend the right tier, finishes, and hardware for your space.</p>
-            <a href="contact.html" class="btn btn-primary btn-lg">Schedule Consultation</a>
+    <section class="cta-section">
+        <div class="cta-content">
+            <p class="tagline">Get Started</p>
+            <h2>Let's build your portal</h2>
+            <p>Tell us what you're building. We'll recommend the right tier, finishes, and hardware for your space.</p>
+            <a href="contact.html" class="cta-button">Schedule Consultation</a>
         </div>
     </section>
 
@@ -305,5 +635,17 @@
         </ul>
         <p class="footer-copy">© 2026 Portal. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
